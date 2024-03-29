@@ -400,7 +400,6 @@ MonoBehaviour:
   selectDistance: 0.02
   yellow: {fileID: 2100000, guid: 5da9f8498d41de24da3dd1de8d36d102, type: 2}
   white: {fileID: 2100000, guid: 0845c959909149a419ef01bf0876a74a, type: 2}
-  freshmanDormScene: {fileID: 0}
   gatechMap: {fileID: 2029882940107630345}
   OVRCameraRig: {fileID: 0}
   infoCard: {fileID: 300037692447884560}

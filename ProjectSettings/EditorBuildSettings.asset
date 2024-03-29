@@ -11,6 +11,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Freshman Dorm.unity
     guid: 0997c28769cf49e49ac0975a916e7481
+  - enabled: 1
+    path: Assets/Scenes/Reading Room.unity
+    guid: a50aa83bc5808bd438320c2222e9c5b9
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: eb298ff245b4f6c4d825361d44b7faaf, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: ec2043478deb3ce49aea2decea442dc4, type: 2}

@@ -14,7 +14,8 @@ public class FingerDistanceEventHandler : MonoBehaviour
         [SerializeField] private float licdistance;
         [SerializeField] private float ricdistance;
         [SerializeField] private float hoverDistance = 0.1f;
-        [SerializeField] private float selectDistance = 0.02f; 
+        [SerializeField] private float selectDistance = 0.02f;
+        [SerializeField] private string sceneName;
         [SerializeField] private Material yellow;
         [SerializeField] private Material white;
         [SerializeField] private GameObject gatechMap;
@@ -35,7 +36,7 @@ public class FingerDistanceEventHandler : MonoBehaviour
         ricdistance = Vector3.Distance (this.transform.position, rightControllerIndex.transform.position);
         if (lidistance < selectDistance || ridistance < selectDistance || licdistance < selectDistance || ricdistance < selectDistance)
         {
-            SceneManager.LoadScene("Freshman Dorm");
+            SceneManager.LoadScene(sceneName);
         } else if (lidistance < hoverDistance || ridistance < hoverDistance || licdistance < hoverDistance || ricdistance < hoverDistance) {
             this.GetComponent<MeshRenderer> ().material = white;
             infoCard.SetActive(true);
