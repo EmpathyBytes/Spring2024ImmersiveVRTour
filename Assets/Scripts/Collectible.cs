@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-
-using UnityEngine;
+using TMPro;
 
 public class Collectible :  MonoBehaviour
 {
@@ -22,6 +19,7 @@ public class Collectible :  MonoBehaviour
         [SerializeField] private GameObject OVRCameraRig;
 
     // Start is called before the first frame update
+    public TextMeshPro counterText;
     private bool scoreAdded = false;
     void Start()
     {
@@ -37,14 +35,16 @@ public class Collectible :  MonoBehaviour
         if (lidistance < selectDistance || ridistance < selectDistance || licdistance < selectDistance || ricdistance < selectDistance)
         {
             if (!scoreAdded) {
-             scoreValue++;
-             Debug.Log("Score increased to: " + scoreValue);
-             scoreAdded = true; 
+                scoreValue++;
+                Debug.Log("Score increased to: " + scoreValue);
+                if (counterText != null)
+                {
+                    counterText.text = "Objects picked up: " + scoreValue;
+                }
+                scoreAdded = true; 
             }
           
         }
-    }
-
-   
+    } 
 }
 
