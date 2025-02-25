@@ -5,7 +5,7 @@ using TMPro;
 
 public class Collectible :  MonoBehaviour
 {
-    public int scoreValue = 0;  
+    public int scoreValue;  
        [SerializeField] private GameObject leftIndex;
         [SerializeField] private GameObject rightIndex;
         [SerializeField] private GameObject leftControllerIndex;
@@ -21,6 +21,8 @@ public class Collectible :  MonoBehaviour
     // Start is called before the first frame update
     public TextMeshPro counterText;
     private bool scoreAdded = false;
+    private static int totalScore = 0;
+
     void Start()
     {
     }
@@ -32,16 +34,17 @@ public class Collectible :  MonoBehaviour
         ridistance = Vector3.Distance (this.transform.position, rightIndex.transform.position);
         licdistance = Vector3.Distance (this.transform.position, leftControllerIndex.transform.position);
         ricdistance = Vector3.Distance (this.transform.position, rightControllerIndex.transform.position);
-        if (lidistance < selectDistance || ridistance < selectDistance || licdistance < selectDistance || ricdistance < selectDistance)
+
+        bool isWithinRange = (lidistance < selectDistance || ridistance < selectDistance || licdistance < selectDistance || ricdistance < selectDistance);
+
+
+        if (isWithinRange && !scoreAdded )
         {
-            if (!scoreAdded) {
-                scoreValue++;
-                Debug.Log("Score increased to: " + scoreValue);
-                if (counterText != null)
-                {
-                    counterText.text = "Objects picked up: " + scoreValue;
-                }
-                scoreAdded = true; 
+            scoreAdded = true;
+            totalScore += scoreValue;
+            if (counterText != null)
+            {
+                counterText.text = "Objects picked up: " + totalScore;
             }
           
         }
