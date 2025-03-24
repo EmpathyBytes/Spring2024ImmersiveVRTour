@@ -235,11 +235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3753ad5608b31a5478c629e5aeb0aa3b, type: 3}
       propertyPath: m_LocalPosition.y
-<<<<<<< Updated upstream
-      value: 11.384821
-=======
       value: 2.614
->>>>>>> Stashed changes
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 3753ad5608b31a5478c629e5aeb0aa3b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -310,9 +306,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 4217811}
   m_SourcePrefab: {fileID: 100100000, guid: 3753ad5608b31a5478c629e5aeb0aa3b, type: 3}
-<<<<<<< Updated upstream
---- !u!4 &4217808 stripped
-=======
 --- !u!1 &4217808 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 3753ad5608b31a5478c629e5aeb0aa3b, type: 3}
@@ -336,13 +329,10 @@ MonoBehaviour:
       m_Calls: []
   _sleepFrames: 0
 --- !u!4 &4217810 stripped
->>>>>>> Stashed changes
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 3753ad5608b31a5478c629e5aeb0aa3b, type: 3}
   m_PrefabInstance: {fileID: 4217807}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream
-=======
 --- !u!114 &4217811
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,7 +457,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
->>>>>>> Stashed changes
 --- !u!1 &8954528
 GameObject:
   m_ObjectHideFlags: 0
