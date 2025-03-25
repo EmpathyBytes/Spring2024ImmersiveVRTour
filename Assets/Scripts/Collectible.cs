@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
+
+
+
+using UnityEngine;
 
 public class Collectible :  MonoBehaviour
 {
-    public int scoreValue;  
+    public int scoreValue = 0;  
        [SerializeField] private GameObject leftIndex;
         [SerializeField] private GameObject rightIndex;
         [SerializeField] private GameObject leftControllerIndex;
@@ -19,10 +22,7 @@ public class Collectible :  MonoBehaviour
         [SerializeField] private GameObject OVRCameraRig;
 
     // Start is called before the first frame update
-    public TextMeshPro counterText;
     private bool scoreAdded = false;
-    private static int totalScore = 0;
-
     void Start()
     {
     }
@@ -34,20 +34,17 @@ public class Collectible :  MonoBehaviour
         ridistance = Vector3.Distance (this.transform.position, rightIndex.transform.position);
         licdistance = Vector3.Distance (this.transform.position, leftControllerIndex.transform.position);
         ricdistance = Vector3.Distance (this.transform.position, rightControllerIndex.transform.position);
-
-        bool isWithinRange = (lidistance < selectDistance || ridistance < selectDistance || licdistance < selectDistance || ricdistance < selectDistance);
-
-
-        if (isWithinRange && !scoreAdded )
+        if (lidistance < selectDistance || ridistance < selectDistance || licdistance < selectDistance || ricdistance < selectDistance)
         {
-            scoreAdded = true;
-            totalScore += scoreValue;
-            if (counterText != null)
-            {
-                counterText.text = "Objects picked up: " + totalScore;
+            if (!scoreAdded) {
+             scoreValue++;
+             Debug.Log("Score increased to: " + scoreValue);
+             scoreAdded = true; 
             }
           
         }
-    } 
+    }
+
+   
 }
 

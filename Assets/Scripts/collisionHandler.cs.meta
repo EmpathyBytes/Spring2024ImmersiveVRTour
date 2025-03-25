@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8db4977f79855d84f8e73b2c95f8f084
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - snare: {fileID: 8300000, guid: ce52d6a2ac7fec5409ed806a0118b185, type: 3}
+  - hihat: {fileID: 8300000, guid: b5863fa6b75d77a4f85dc65fe6823c1f, type: 3}
+  - lowtom: {fileID: 8300000, guid: 53c11059542e216499d0e53f36a67dc0, type: 3}
+  - hightom: {fileID: 8300000, guid: e001fc832d34c22489a32ea1998d0512, type: 3}
+  - ride: {fileID: 8300000, guid: f18242f2f7127e84aaaf2afa5623734a, type: 3}
+  - crash: {fileID: 8300000, guid: b2d6eba1768e57f48b447ea472944db0, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
