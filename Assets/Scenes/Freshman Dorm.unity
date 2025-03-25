@@ -1174,6 +1174,30 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.016699273, y: -0.03636414, z: -0.018954389}
     m_Extent: {x: 0.05463389, y: 0.050220694, z: 0.051451057}
   m_DirtyAABB: 0
+--- !u!114 &88540123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928538495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f47bb17fbceeb842bb5bdf007e6068c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 1
+  leftIndex: {fileID: 169713738}
+  rightIndex: {fileID: 2080761567}
+  leftControllerIndex: {fileID: 169713738}
+  rightControllerIndex: {fileID: 2080761567}
+  lidistance: 0.1
+  ridistance: 0.1
+  licdistance: 0.1
+  ricdistance: 0.1
+  selectDistance: 0.1
+  OVRCameraRig: {fileID: 303001326932288418, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  counterText: {fileID: 736242436}
 --- !u!1 &89154279
 GameObject:
   m_ObjectHideFlags: 0
@@ -4228,6 +4252,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &310070038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928538475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f47bb17fbceeb842bb5bdf007e6068c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 1
+  leftIndex: {fileID: 169713738}
+  rightIndex: {fileID: 2080761567}
+  leftControllerIndex: {fileID: 169713738}
+  rightControllerIndex: {fileID: 2080761567}
+  lidistance: 1
+  ridistance: 1
+  licdistance: 1
+  ricdistance: 1
+  selectDistance: 0.1
+  OVRCameraRig: {fileID: 303001326932288418, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  counterText: {fileID: 736242436}
 --- !u!1 &313597946
 GameObject:
   m_ObjectHideFlags: 0
@@ -12231,6 +12279,30 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   _alphaRange: {x: 0.1, y: 0.4}
+--- !u!114 &1016457391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928538471}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f47bb17fbceeb842bb5bdf007e6068c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 1
+  leftIndex: {fileID: 169713738}
+  rightIndex: {fileID: 2080761567}
+  leftControllerIndex: {fileID: 169713738}
+  rightControllerIndex: {fileID: 2080761567}
+  lidistance: 1
+  ridistance: 1
+  licdistance: 1
+  ricdistance: 1
+  selectDistance: 0.1
+  OVRCameraRig: {fileID: 303001326932288418, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  counterText: {fileID: 736242436}
 --- !u!1 &1022395428
 GameObject:
   m_ObjectHideFlags: 0
@@ -13561,6 +13633,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1704291192}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1157945102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928538483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f47bb17fbceeb842bb5bdf007e6068c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 1
+  leftIndex: {fileID: 169713738}
+  rightIndex: {fileID: 2080761567}
+  leftControllerIndex: {fileID: 169713738}
+  rightControllerIndex: {fileID: 2080761567}
+  lidistance: 1
+  ridistance: 1
+  licdistance: 1
+  ricdistance: 1
+  selectDistance: 0.1
+  OVRCameraRig: {fileID: 303001326932288418, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  counterText: {fileID: 736242436}
 --- !u!1 &1176166805
 GameObject:
   m_ObjectHideFlags: 0
@@ -13656,6 +13752,30 @@ Transform:
   - {fileID: 828395365}
   m_Father: {fileID: 1135561070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1189896150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928538479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f47bb17fbceeb842bb5bdf007e6068c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 1
+  leftIndex: {fileID: 169713738}
+  rightIndex: {fileID: 2080761567}
+  leftControllerIndex: {fileID: 169713738}
+  rightControllerIndex: {fileID: 2080761567}
+  lidistance: 0
+  ridistance: 0
+  licdistance: 0
+  ricdistance: 0
+  selectDistance: 0.1
+  OVRCameraRig: {fileID: 303001326932288418, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  counterText: {fileID: 736242436}
 --- !u!1 &1194485222
 GameObject:
   m_ObjectHideFlags: 0
@@ -14590,6 +14710,30 @@ MonoBehaviour:
     - {x: 0.08593933, y: 0.03422374, z: -0.2602667, w: 0.96109545}
     - {x: 0.05339522, y: -0.02018871, z: 0.45798212, w: -0.8871266}
     - {x: -0.021061467, y: 0.044436157, z: 0.3939421, w: -0.9178189}
+--- !u!114 &1263578705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928538487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f47bb17fbceeb842bb5bdf007e6068c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 1
+  leftIndex: {fileID: 169713738}
+  rightIndex: {fileID: 2080761567}
+  leftControllerIndex: {fileID: 169713738}
+  rightControllerIndex: {fileID: 2080761567}
+  lidistance: 0
+  ridistance: 0
+  licdistance: 0
+  ricdistance: 0
+  selectDistance: 0.1
+  OVRCameraRig: {fileID: 303001326932288418, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  counterText: {fileID: 736242436}
 --- !u!1 &1274940017
 GameObject:
   m_ObjectHideFlags: 0
@@ -22544,6 +22688,30 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1876102759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1928538491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f47bb17fbceeb842bb5bdf007e6068c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreValue: 1
+  leftIndex: {fileID: 169713738}
+  rightIndex: {fileID: 2080761567}
+  leftControllerIndex: {fileID: 169713738}
+  rightControllerIndex: {fileID: 2080761567}
+  lidistance: 1
+  ridistance: 1
+  licdistance: 1
+  ricdistance: 1
+  selectDistance: 0.1
+  OVRCameraRig: {fileID: 303001326932288418, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  counterText: {fileID: 736242436}
 --- !u!1 &1881790629
 GameObject:
   m_ObjectHideFlags: 0
@@ -25155,15 +25323,24 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2065274434201389149, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1839531661}
+    - targetCorrespondingSourceObject: {fileID: 2065274434201389149, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 88540123}
     - targetCorrespondingSourceObject: {fileID: 2481278203578069357, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1866991280}
     - targetCorrespondingSourceObject: {fileID: 2481278203578069357, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 166422144}
+    - targetCorrespondingSourceObject: {fileID: 2481278203578069357, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1876102759}
     - targetCorrespondingSourceObject: {fileID: 4134590182248706489, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 926198980}
+    - targetCorrespondingSourceObject: {fileID: 4134590182248706489, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1263578705}
     - targetCorrespondingSourceObject: {fileID: 8760550973817706111, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2023988488}
@@ -25173,21 +25350,33 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8760550973817706111, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2023988490}
+    - targetCorrespondingSourceObject: {fileID: 8760550973817706111, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1157945102}
     - targetCorrespondingSourceObject: {fileID: 6527279799834936346, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1450958622}
     - targetCorrespondingSourceObject: {fileID: 6527279799834936346, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 386539057}
+    - targetCorrespondingSourceObject: {fileID: 6527279799834936346, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1189896150}
     - targetCorrespondingSourceObject: {fileID: 1241048639777790140, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 306553559}
     - targetCorrespondingSourceObject: {fileID: 1241048639777790140, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1728042609}
+    - targetCorrespondingSourceObject: {fileID: 1241048639777790140, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 310070038}
     - targetCorrespondingSourceObject: {fileID: 7364407579668887570, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1482692740}
+    - targetCorrespondingSourceObject: {fileID: 7364407579668887570, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1016457391}
     - targetCorrespondingSourceObject: {fileID: 7435149329723869276, guid: 7c90e78caf2005d46bc6f202164db9d2, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1412556359}
@@ -25546,15 +25735,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f47bb17fbceeb842bb5bdf007e6068c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreValue: 0
+  scoreValue: 1
   leftIndex: {fileID: 169713738}
   rightIndex: {fileID: 2080761567}
   leftControllerIndex: {fileID: 169713738}
   rightControllerIndex: {fileID: 2080761567}
-  lidistance: 1
-  ridistance: 1
-  licdistance: 1
-  ricdistance: 1
+  lidistance: 0
+  ridistance: 0
+  licdistance: 0
+  ricdistance: 0
   selectDistance: 0.1
   OVRCameraRig: {fileID: 303001326932288418, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
   counterText: {fileID: 736242436}
