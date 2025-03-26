@@ -13,12 +13,11 @@ public class collisionHandler : MonoBehaviour
     [SerializeField] private AudioClip ride;
     [SerializeField] private AudioClip crash;
 
-    private bool played = false;
     private AudioSource audioSource;
     void OnCollisionEnter(Collision collision)
     {
 
-        if (collision.gameObject.CompareTag("drumSet") && !played)
+        if (collision.gameObject.CompareTag("drumSet"))
         {
             GameObject drum = GameObject.Find("DrumCollider");
             audioSource = drum.GetComponent<AudioSource>();
@@ -34,14 +33,13 @@ public class collisionHandler : MonoBehaviour
         }
     }
 
-    void OnCollisionExit(Collision collision)
+    /*void OnCollisionExit(Collision collision)
     {
-      
         if (collision.gameObject.CompareTag("drumSet"))
         {
             played = false;
         }
-    }
+    }*/
 
     AudioClip GetSound(string drumName)
     {
