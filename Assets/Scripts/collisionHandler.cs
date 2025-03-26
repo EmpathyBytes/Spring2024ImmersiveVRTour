@@ -14,6 +14,7 @@ public class collisionHandler : MonoBehaviour
     [SerializeField] private AudioClip crash;
 
     private AudioSource audioSource;
+    private bool played = false;
     void OnCollisionEnter(Collision collision)
     {
 
@@ -26,6 +27,7 @@ public class collisionHandler : MonoBehaviour
             if (clipToPlay != null)
             {
                 audioSource.PlayOneShot(clipToPlay);
+                played = true;
             }
 
             /*Debug.Log(collision.gameObject.name);*/
@@ -33,13 +35,13 @@ public class collisionHandler : MonoBehaviour
         }
     }
 
-    /*void OnCollisionExit(Collision collision)
+    void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.CompareTag("drumSet"))
         {
             played = false;
         }
-    }*/
+    }
 
     AudioClip GetSound(string drumName)
     {
