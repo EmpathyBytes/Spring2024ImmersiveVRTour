@@ -697,6 +697,7 @@ MonoBehaviour:
     - {x: -0.09087353, y: 0.007756874, z: -0.012195421, w: -0.99575764}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.008195012, y: 0.048487265, z: 0.1297448, w: -0.99032724}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &61420616
 GameObject:
   m_ObjectHideFlags: 0
@@ -2052,6 +2053,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &132503385
 GameObject:
   m_ObjectHideFlags: 0
@@ -2280,6 +2284,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.0052181357, y: 0.048897326, z: 0.069013365, w: -0.9964031}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &154032460
 GameObject:
   m_ObjectHideFlags: 0
@@ -2413,6 +2418,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.020505091, y: 0.04469574, z: 0.3824615, w: -0.92266196}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &163306294
 GameObject:
   m_ObjectHideFlags: 0
@@ -4778,6 +4784,7 @@ MonoBehaviour:
     - {x: -0.09087353, y: 0.007756874, z: -0.012195421, w: -0.99575764}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.008195012, y: 0.048487265, z: 0.1297448, w: -0.99032724}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &313597946
 GameObject:
   m_ObjectHideFlags: 0
@@ -5179,6 +5186,9 @@ MonoBehaviour:
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
   instanceId: fb6c7c08-85ed-478a-9241-d13775259b87
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &334217669
 GameObject:
   m_ObjectHideFlags: 0
@@ -5263,9 +5273,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hand: {fileID: 1136056437}
-  _skinnedMeshRenderer: {fileID: 457185471}
   _updateRootPose: 1
   _updateRootScale: 1
+  _updateVisibility: 1
+  _skinnedMeshRenderer: {fileID: 457185471}
   _root: {fileID: 0}
   _handMaterialPropertyBlockEditor: {fileID: 457185469}
   _jointTransforms:
@@ -5429,6 +5440,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.05708128, y: 0.00064065383, z: 0.74957514, w: -0.65945315}
     - {x: -0.015295103, y: 0.04673562, z: 0.2751842, w: -0.960133}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &348653627
 GameObject:
   m_ObjectHideFlags: 0
@@ -5800,6 +5812,9 @@ MonoBehaviour:
   blockId: 4187448e-9c2a-4021-ad92-fb65840f2721
   instanceId: cd67839c-f399-4700-b9e0-0d4fdf7d2a77
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &357184617
 GameObject:
   m_ObjectHideFlags: 0
@@ -5995,6 +6010,9 @@ MonoBehaviour:
   blockId: 81f55626-5fad-45e9-a1df-184f330da7ba
   instanceId: 96a929fc-1ce1-4eba-aadc-1a8874bd8235
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &366672598
 GameObject:
   m_ObjectHideFlags: 0
@@ -6385,6 +6403,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &382731142
 GameObject:
   m_ObjectHideFlags: 0
@@ -6588,9 +6609,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hand: {fileID: 1657386200}
-  _skinnedMeshRenderer: {fileID: 230797365}
   _updateRootPose: 1
   _updateRootScale: 1
+  _updateVisibility: 1
+  _skinnedMeshRenderer: {fileID: 230797365}
   _root: {fileID: 0}
   _handMaterialPropertyBlockEditor: {fileID: 230797363}
   _jointTransforms:
@@ -6872,6 +6894,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 828395365}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &453313426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3093459632219750287, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  m_PrefabInstance: {fileID: 1898219523127082104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &453313428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 453313426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &453379681
 GameObject:
   m_ObjectHideFlags: 0
@@ -7100,6 +7171,7 @@ MonoBehaviour:
     - {x: -0.08974776, y: 0.016232083, z: -0.105382994, w: -0.9902405}
     - {x: 0.04868462, y: -0.029807223, z: 0.28421265, w: -0.95706034}
     - {x: -0.028153028, y: 0.040318567, z: 0.540993, w: -0.8395882}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &464347082
 GameObject:
   m_ObjectHideFlags: 0
@@ -7600,6 +7672,7 @@ MonoBehaviour:
     - {x: -0.090663426, y: -0.00991486, z: 0.18007816, w: -0.979415}
     - {x: 0.04155904, y: -0.03913441, z: 0.082459666, w: -0.9949582}
     - {x: -0.013118166, y: 0.04739294, z: 0.23049656, w: -0.9718299}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &507854175
 GameObject:
   m_ObjectHideFlags: 0
@@ -8314,6 +8387,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &561650400
 GameObject:
   m_ObjectHideFlags: 0
@@ -8695,6 +8771,7 @@ MonoBehaviour:
     - {x: -0.087827675, y: 0.024585584, z: -0.19787817, w: -0.97597444}
     - {x: 0.04173946, y: -0.038941972, z: 0.087056346, w: -0.9945665}
     - {x: -0.0069013475, y: 0.048688233, z: 0.103333645, w: -0.9934305}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &579769240
 GameObject:
   m_ObjectHideFlags: 0
@@ -9284,6 +9361,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &588542782
 GameObject:
   m_ObjectHideFlags: 0
@@ -9620,6 +9700,9 @@ MonoBehaviour:
   blockId: 8b26b298-7bf4-490e-b245-a039c0184303
   instanceId: 3657ee88-72c5-492e-b07a-2e3f4628f086
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &606673576
 GameObject:
   m_ObjectHideFlags: 0
@@ -9836,6 +9919,7 @@ MonoBehaviour:
     - {x: -0.08974776, y: 0.016232083, z: -0.105382994, w: -0.9902405}
     - {x: 0.04868462, y: -0.029807223, z: 0.28421265, w: -0.95706034}
     - {x: -0.028153028, y: 0.040318567, z: 0.540993, w: -0.8395882}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &615253345
 GameObject:
   m_ObjectHideFlags: 0
@@ -9935,6 +10019,7 @@ MonoBehaviour:
     - {x: -0.11232674, y: 0.07165854, z: -0.054442085, w: -0.9895877}
     - {x: 0.053603876, y: -0.019629145, z: 0.46723703, w: -0.8822873}
     - {x: -0.013091649, y: 0.047400206, z: 0.22995122, w: -0.97195905}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &618991560
 GameObject:
   m_ObjectHideFlags: 0
@@ -10003,6 +10088,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.010967425, y: 0.047936298, z: 0.18643205, w: -0.9812364}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &619258161
 GameObject:
   m_ObjectHideFlags: 0
@@ -11245,6 +11331,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.040768012, y: -0.039957885, z: 0.062543906, w: -0.99640834}
     - {x: -0.013096412, y: 0.047398854, z: 0.23004988, w: -0.97193563}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &699679136
 GameObject:
   m_ObjectHideFlags: 0
@@ -11989,6 +12076,55 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 9167619540984040286, guid: 7867f8a4a8984314e93d187e9fede42e, type: 3}
   m_PrefabInstance: {fileID: 732120984}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &733166238 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3093459632219750281, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  m_PrefabInstance: {fileID: 1898219523127082104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &733166240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 733166238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &741718682
 GameObject:
   m_ObjectHideFlags: 0
@@ -12296,6 +12432,9 @@ MonoBehaviour:
   blockId: 27673ac1-cdb0-443f-a07d-6ff1d34daeca
   instanceId: 4ad08238-9c9d-41eb-b80e-d1df1fa4fff2
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &756471906
 GameObject:
   m_ObjectHideFlags: 0
@@ -12376,7 +12515,7 @@ MonoBehaviour:
   _hand: {fileID: 880286939}
   _offset: {x: -0.1, y: -0.035, z: 0}
   _rotation: {x: 0.105225, y: -0.6678412, z: 0.013933297, w: 0.7366965}
-  _mirrorLeftRotation: 1
+  _mirrorOffsetsForLeftHand: 1
 --- !u!1 &763270259
 GameObject:
   m_ObjectHideFlags: 0
@@ -13314,6 +13453,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &819862621
 GameObject:
   m_ObjectHideFlags: 0
@@ -13519,6 +13661,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 1717675448}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!114 &823246440
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13967,6 +14112,7 @@ MonoBehaviour:
   _handJointId: 8
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+  _mirrorOffsetsForLeftHand: 1
 --- !u!1 &845578354
 GameObject:
   m_ObjectHideFlags: 0
@@ -14523,6 +14669,9 @@ MonoBehaviour:
   blockId: 4187448e-9c2a-4021-ad92-fb65840f2721
   instanceId: 9ba5ac5c-86dc-467e-a435-2c611617d5fb
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &885217771
 GameObject:
   m_ObjectHideFlags: 0
@@ -15020,7 +15169,7 @@ MonoBehaviour:
   _hand: {fileID: 880286939}
   _offset: {x: -0.11, y: -0.075, z: -0.02}
   _rotation: {x: 0.105225, y: -0.6678412, z: 0.013933297, w: 0.7366965}
-  _mirrorLeftRotation: 1
+  _mirrorOffsetsForLeftHand: 1
 --- !u!4 &929079215
 Transform:
   m_ObjectHideFlags: 0
@@ -15194,6 +15343,9 @@ MonoBehaviour:
   blockId: 0393ca30-f2a9-4865-a40f-f9a68d01c3a9
   instanceId: 0a9eb104-a11e-476c-b7ad-09df264b2ca0
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &939159545
 GameObject:
   m_ObjectHideFlags: 0
@@ -15408,6 +15560,7 @@ MonoBehaviour:
     - {x: -0.090663426, y: -0.00991486, z: 0.18007816, w: -0.979415}
     - {x: 0.04155904, y: -0.03913441, z: 0.082459666, w: -0.9949582}
     - {x: -0.013118166, y: 0.04739294, z: 0.23049656, w: -0.9718299}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &951706377
 GameObject:
   m_ObjectHideFlags: 0
@@ -16586,6 +16739,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.006832872, y: 0.048697866, z: 0.101938285, w: -0.9935746}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1035784449
 GameObject:
   m_ObjectHideFlags: 0
@@ -17122,6 +17276,7 @@ MonoBehaviour:
     - {x: -0.09090272, y: 0.0074064573, z: -0.008358094, w: -0.9957972}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.00439437, y: 0.048978187, z: 0.05223237, w: -0.9974235}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1100909714
 GameObject:
   m_ObjectHideFlags: 0
@@ -17702,6 +17857,9 @@ MonoBehaviour:
   blockId: 6b67162c-2460-4766-a931-980388647573
   instanceId: 9df128c6-d87b-4f52-8e76-85aeaf49c0a1
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!4 &1136056439
 Transform:
   m_ObjectHideFlags: 0
@@ -18392,6 +18550,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &1194485222
 GameObject:
   m_ObjectHideFlags: 0
@@ -18527,6 +18688,9 @@ MonoBehaviour:
   blockId: f61a01e5-61c7-4589-bd2d-107bccae8f02
   instanceId: 565367bc-1193-48b5-a311-e50481d3c392
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1196691867
 GameObject:
   m_ObjectHideFlags: 0
@@ -18657,6 +18821,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.040768012, y: -0.039957885, z: 0.062543906, w: -0.99640834}
     - {x: -0.013096412, y: 0.047398854, z: 0.23004988, w: -0.97193563}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1210736201
 GameObject:
   m_ObjectHideFlags: 0
@@ -18819,6 +18984,7 @@ MonoBehaviour:
   mrcActivationMode: 0
   launchSimultaneousHandsControllersOnStartup: 0
   isInsightPassthroughEnabled: 1
+  shouldBoundaryVisibilityBeSuppressed: 0
   requestBodyTrackingPermissionOnStartup: 0
   requestFaceTrackingPermissionOnStartup: 0
   requestEyeTrackingPermissionOnStartup: 0
@@ -18867,6 +19033,9 @@ MonoBehaviour:
   blockId: e47682b9-c270-40b1-b16d-90b627a5ce1b
   instanceId: 1402658f-c04e-4336-a98d-34a5a662fd26
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!4 &1221436044
 Transform:
   m_ObjectHideFlags: 0
@@ -18983,6 +19152,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.055966046, y: -0.011245648, z: 0.59602493, w: -0.80093426}
     - {x: -0.009673858, y: 0.04821395, z: 0.15996721, w: -0.98589677}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1224391509
 GameObject:
   m_ObjectHideFlags: 0
@@ -19326,6 +19496,9 @@ MonoBehaviour:
   blockId: 5d47ae98-1ed8-4753-ac7f-c41012479e3d
   instanceId: 0894238c-3370-4f0d-902d-9837f3772ed0
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1262800578
 GameObject:
   m_ObjectHideFlags: 0
@@ -19394,6 +19567,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.0105373375, y: 0.04803267, z: 0.17762935, w: -0.9828681}
+  _ghostProvider: {fileID: 0}
 --- !u!1001 &1264589676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19755,6 +19929,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &1270775958
 GameObject:
   m_ObjectHideFlags: 0
@@ -19823,6 +20000,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.008115603, y: 0.048500594, z: 0.12812194, w: -0.99053854}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1274940017
 GameObject:
   m_ObjectHideFlags: 0
@@ -20145,6 +20323,9 @@ MonoBehaviour:
   blockId: f61a01e5-61c7-4589-bd2d-107bccae8f02
   instanceId: f48d825e-5642-414b-8cb6-5b6ec0a91e88
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1280636056
 GameObject:
   m_ObjectHideFlags: 0
@@ -20856,6 +21037,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.05672128, y: 0.006432817, z: 0.81265634, w: -0.57994056}
     - {x: -0.029418414, y: 0.039404504, z: 0.5673762, w: -0.8219892}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1352062260
 GameObject:
   m_ObjectHideFlags: 0
@@ -20980,6 +21162,9 @@ MonoBehaviour:
   _hand: {fileID: 880286939}
   _handGrabApi: {fileID: 1407965581}
   _collider: {fileID: 929079212}
+  _localPositionOffset: {x: 0, y: 0, z: 0}
+  _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+  _mirrorOffsetsForLeftHand: 1
 --- !u!1001 &1360243340
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21250,6 +21435,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &1361170741
 GameObject:
   m_ObjectHideFlags: 0
@@ -21320,7 +21508,7 @@ MonoBehaviour:
   _hand: {fileID: 354766217}
   _offset: {x: -0.11, y: -0.075, z: -0.02}
   _rotation: {x: 0.105225, y: -0.6678412, z: 0.013933297, w: 0.7366965}
-  _mirrorLeftRotation: 1
+  _mirrorOffsetsForLeftHand: 1
 --- !u!4 &1361170745
 Transform:
   m_ObjectHideFlags: 0
@@ -21692,6 +21880,55 @@ Transform:
   m_Children: []
   m_Father: {fileID: 321103426}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1375829800 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3093459632219750283, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+  m_PrefabInstance: {fileID: 1898219523127082104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1375829802
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375829800}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &1390321035
 GameObject:
   m_ObjectHideFlags: 0
@@ -21947,6 +22184,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.006832872, y: 0.048697866, z: 0.101938285, w: -0.9935746}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1406124231 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7298233757611531553, guid: 0ed42f5d6ca022a43bd2cfea652395b3, type: 3}
@@ -22365,6 +22603,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!65 &1410206951
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22567,6 +22808,9 @@ MonoBehaviour:
   blockId: 27673ac1-cdb0-443f-a07d-6ff1d34daeca
   instanceId: 4e5072f0-2667-479b-81a0-d43758cb8f16
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1424048494
 GameObject:
   m_ObjectHideFlags: 0
@@ -22703,6 +22947,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 7063601882073007575}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!114 &1424048500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24518,7 +24765,7 @@ MonoBehaviour:
   _hand: {fileID: 354766217}
   _offset: {x: 0, y: 0, z: 0}
   _rotation: {x: 0, y: 0, z: 0, w: 1}
-  _mirrorLeftRotation: 0
+  _mirrorOffsetsForLeftHand: 0
 --- !u!1 &1555085433
 GameObject:
   m_ObjectHideFlags: 0
@@ -24649,6 +24896,9 @@ MonoBehaviour:
   overridePerLayerColorScaleAndOffset: 0
   colorScale: {x: 1, y: 1, z: 1, w: 1}
   colorOffset: {x: 0, y: 0, z: 0, w: 0}
+  passthroughLayerResumed:
+    m_PersistentCalls:
+      m_Calls: []
   colorMapEditorType_: 0
   colorMapEditorGradient:
     serializedVersion: 2
@@ -24708,6 +24958,9 @@ MonoBehaviour:
   blockId: f0540b20-dfd6-420e-b20d-c270f88dc77e
   instanceId: 734e4407-a5cd-422d-a1aa-6fdb2379cf5c
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!4 &1569158583
 Transform:
   m_ObjectHideFlags: 0
@@ -24897,6 +25150,9 @@ MonoBehaviour:
   blockId: 5d47ae98-1ed8-4753-ac7f-c41012479e3d
   instanceId: 9659ba9b-bd2f-4265-9a5a-8bc8ab982901
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1575115970
 GameObject:
   m_ObjectHideFlags: 0
@@ -25260,7 +25516,7 @@ MonoBehaviour:
   _hand: {fileID: 354766217}
   _offset: {x: -0.1, y: -0.035, z: 0}
   _rotation: {x: 0.105225, y: -0.6678412, z: 0.013933297, w: 0.7366965}
-  _mirrorLeftRotation: 1
+  _mirrorOffsetsForLeftHand: 1
 --- !u!1 &1585370390
 GameObject:
   m_ObjectHideFlags: 0
@@ -25871,6 +26127,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.008115603, y: 0.048500594, z: 0.12812194, w: -0.99053854}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1616189141 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 303001326932288418, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
@@ -26724,6 +26981,9 @@ MonoBehaviour:
   blockId: 6b67162c-2460-4766-a931-980388647573
   instanceId: 1c9f9b8d-3f9f-426f-a235-86373c044185
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!4 &1657386202
 Transform:
   m_ObjectHideFlags: 0
@@ -26974,6 +27234,7 @@ MonoBehaviour:
   _handJointId: 8
   _localPositionOffset: {x: 0.017, y: 0, z: 0}
   _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+  _mirrorOffsetsForLeftHand: 1
 --- !u!1 &1664586457
 GameObject:
   m_ObjectHideFlags: 0
@@ -27376,6 +27637,9 @@ MonoBehaviour:
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
   instanceId: 8aec2367-acb3-4a56-9b68-251c779f905c
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1693348710
 GameObject:
   m_ObjectHideFlags: 0
@@ -27512,6 +27776,9 @@ MonoBehaviour:
   blockId: bc3f7b21-a55c-4cf7-b9c6-78d4341573a4
   instanceId: 7f484ad2-625a-4dbc-a3d9-20c1b3eae2d6
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1 &1696206239
 GameObject:
   m_ObjectHideFlags: 0
@@ -27983,6 +28250,9 @@ MonoBehaviour:
   blockId: bc3f7b21-a55c-4cf7-b9c6-78d4341573a4
   instanceId: ae703ce4-4ebf-48d8-bdd3-1d1ade6dae97
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1001 &1717675447
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29527,6 +29797,7 @@ MonoBehaviour:
     - {x: -0.08997084, y: -0.0149471555, z: 0.23432796, w: -0.96787}
     - {x: 0.047217254, y: -0.032081172, z: 0.23853587, w: -0.9694545}
     - {x: -0.0052083936, y: 0.048898276, z: 0.06881665, w: -0.9964166}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1819281065
 GameObject:
   m_ObjectHideFlags: 0
@@ -29642,6 +29913,9 @@ MonoBehaviour:
   blockId: 5817f7c0-f2a5-45f9-a5ca-64264e0166e8
   instanceId: 55920cab-2a38-45b5-95d9-2ff0e002eafb
   version: 1
+  installationRoutineCheckpoint:
+    _installationRoutineId: 
+    _installationVariants: []
 --- !u!1001 &1822782739
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30011,6 +30285,7 @@ MonoBehaviour:
     - {x: -0.09090272, y: 0.0074064573, z: -0.008358094, w: -0.9957972}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.00439437, y: 0.048978187, z: 0.05223237, w: -0.9974235}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1840113217
 GameObject:
   m_ObjectHideFlags: 0
@@ -30439,6 +30714,7 @@ MonoBehaviour:
     - {x: -0.090989225, y: -0.0062553277, z: 0.14048511, w: -0.98587316}
     - {x: 0.040309276, y: -0.040420603, z: 0.051167212, w: -0.9970573}
     - {x: -0.003930642, y: 0.04901765, z: 0.04278895, w: -0.9978732}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1881790629
 GameObject:
   m_ObjectHideFlags: 0
@@ -30580,6 +30856,9 @@ MonoBehaviour:
   _hand: {fileID: 354766217}
   _handGrabApi: {fileID: 1009946207}
   _collider: {fileID: 1361170742}
+  _localPositionOffset: {x: 0, y: 0, z: 0}
+  _rotationOffset: {x: 0, y: 0, z: 0, w: 1}
+  _mirrorOffsetsForLeftHand: 1
 --- !u!1 &1894360754
 GameObject:
   m_ObjectHideFlags: 0
@@ -30979,6 +31258,7 @@ MonoBehaviour:
     - {x: -0.090989225, y: -0.0062553277, z: 0.14048511, w: -0.98587316}
     - {x: 0.040309276, y: -0.040420603, z: 0.051167212, w: -0.9970573}
     - {x: -0.003930642, y: 0.04901765, z: 0.04278895, w: -0.9978732}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &1938756775
 GameObject:
   m_ObjectHideFlags: 0
@@ -31022,6 +31302,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1941742847}
   - component: {fileID: 1941742848}
+  - component: {fileID: 1941742849}
   m_Layer: 0
   m_Name: RightEyeAnchor
   m_TagString: Untagged
@@ -31095,6 +31376,50 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &1941742849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1941742846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &1950126085
 GameObject:
   m_ObjectHideFlags: 0
@@ -31740,6 +32065,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &1981277249
 GameObject:
   m_ObjectHideFlags: 0
@@ -32051,6 +32379,7 @@ MonoBehaviour:
     - {x: -0.100565985, y: 0.0873998, z: -0.19939418, w: -0.97081906}
     - {x: 0.053603876, y: -0.019629145, z: 0.46723703, w: -0.8822873}
     - {x: -0.013091649, y: 0.047400206, z: 0.22995122, w: -0.97195905}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &2017327907
 GameObject:
   m_ObjectHideFlags: 0
@@ -32098,7 +32427,7 @@ MonoBehaviour:
   _hand: {fileID: 880286939}
   _offset: {x: 0, y: 0, z: 0}
   _rotation: {x: 0, y: 0, z: 0, w: 1}
-  _mirrorLeftRotation: 0
+  _mirrorOffsetsForLeftHand: 0
 --- !u!1 &2032254536
 GameObject:
   m_ObjectHideFlags: 0
@@ -32167,6 +32496,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.020505091, y: 0.04469574, z: 0.3824615, w: -0.92266196}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &2036966330
 GameObject:
   m_ObjectHideFlags: 0
@@ -32557,6 +32887,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2065852789}
   - component: {fileID: 2065852790}
+  - component: {fileID: 2065852791}
   m_Layer: 0
   m_Name: LeftEyeAnchor
   m_TagString: MainCamera
@@ -32630,6 +32961,50 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
+--- !u!114 &2065852791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2065852788}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &2074538976
 GameObject:
   m_ObjectHideFlags: 0
@@ -32728,6 +33103,7 @@ GameObject:
   - component: {fileID: 2076913221}
   - component: {fileID: 2076913223}
   - component: {fileID: 2076913222}
+  - component: {fileID: 2076913224}
   m_Layer: 0
   m_Name: CenterEyeAnchor
   m_TagString: MainCamera
@@ -32809,6 +33185,50 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2076913220}
   m_Enabled: 1
+--- !u!114 &2076913224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2076913220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_AllowHDROutput: 1
+  m_UseScreenCoordOverride: 0
+  m_ScreenSizeOverride: {x: 0, y: 0, z: 0, w: 0}
+  m_ScreenCoordScaleBias: {x: 0, y: 0, z: 0, w: 0}
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
+  m_TaaSettings:
+    quality: 3
+    frameInfluence: 0.1
+    jitterScale: 1
+    mipBias: 0
+    varianceClampScale: 0.9
+    contrastAdaptiveSharpening: 0
 --- !u!1 &2080597588
 GameObject:
   m_ObjectHideFlags: 0
@@ -32939,6 +33359,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.0052181357, y: 0.048897326, z: 0.069013365, w: -0.9964031}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &2090691888
 GameObject:
   m_ObjectHideFlags: 0
@@ -33255,6 +33676,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!1 &2096956296
 GameObject:
   m_ObjectHideFlags: 0
@@ -33469,6 +33893,7 @@ MonoBehaviour:
     - {x: -0.09120369, y: 0.00020246203, z: 0.07033267, w: -0.99334544}
     - {x: 0.04173946, y: -0.038941972, z: 0.087056346, w: -0.9945665}
     - {x: -0.0069013475, y: 0.048688233, z: 0.103333645, w: -0.9934305}
+  _ghostProvider: {fileID: 0}
 --- !u!1 &2132255732
 GameObject:
   m_ObjectHideFlags: 0
@@ -34269,7 +34694,16 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3093459632219750287, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 453313428}
+    - targetCorrespondingSourceObject: {fileID: 3093459632219750283, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1375829802}
+    - targetCorrespondingSourceObject: {fileID: 3093459632219750281, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 733166240}
   m_SourcePrefab: {fileID: 100100000, guid: 0b703b34357887141b5d8ddf43348f76, type: 3}
 --- !u!23 &1943925186505496247
 MeshRenderer:
@@ -35213,6 +35647,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!114 &3339326451999114917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -35807,6 +36244,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!33 &4064878129823332995
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -36066,6 +36506,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!33 &4170565750650287230
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -39342,6 +39785,9 @@ MonoBehaviour:
   _twoGrabTransformer: {fileID: 0}
   _targetTransform: {fileID: 0}
   _maxGrabPoints: -1
+  _rigidbody: {fileID: 0}
+  _kinematicWhileSelected: 1
+  _throwWhenUnselected: 1
 --- !u!23 &9214259513349698827
 MeshRenderer:
   m_ObjectHideFlags: 0
