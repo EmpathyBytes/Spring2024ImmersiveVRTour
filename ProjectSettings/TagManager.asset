@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - drumSet
+  - achievementList
+  - SamplesInfoPanel
+  - RightHand
+  - test
+  - achievement1
+  - toggle
   layers:
   - Default
   - TransparentFX

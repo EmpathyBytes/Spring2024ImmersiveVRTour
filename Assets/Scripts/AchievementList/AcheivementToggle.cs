@@ -16,7 +16,9 @@ public class AcheivementToggle : MonoBehaviour
         if (!toggle2) {
             toggle1 = true;
             gameObject.SetActive(true);
+            UpdateAchievementManager();
             text.setSwitch(true);
+            
         }
         if (toggle2) {
             toggle1 = false;
@@ -35,5 +37,11 @@ public class AcheivementToggle : MonoBehaviour
             toggle2 = false;
         }
         
+    }
+
+    public void UpdateAchievementManager() {
+        GameObject gameObject = GameObject.FindGameObjectWithTag("achievementList");
+        AchievementManager aM = gameObject.GetComponent<AchievementManager>();
+        aM.UpdateAchievements();
     }
 }
