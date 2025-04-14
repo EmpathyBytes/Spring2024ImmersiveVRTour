@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class AchievementManager : MonoBehaviour
 {
     public Achievement1 a1;
+    public Achievement2 a2;
     public string scene;
     public string currentScene;
     //public string test;
@@ -24,6 +25,7 @@ public class AchievementManager : MonoBehaviour
 
     public void UpdateAchievements() {
         UpdateAchievement1();
+        UpdateAchievement2();
     }
 
     public void UpdateAchievement1() {
@@ -47,6 +49,9 @@ public class AchievementManager : MonoBehaviour
         }
         a1.incrementAchievement(roomNum);
         a1.UpdateAchievementText();
+    }
+    public void UpdateAchievement2() {
+        a2.UpdateAchievementText();
     }
 
 }

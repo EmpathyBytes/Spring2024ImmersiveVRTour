@@ -22,7 +22,7 @@ public class Achievement1 : MonoBehaviour
     }
 
     public void UpdateAchievementText() {
-        toggle = GameObject.FindWithTag("toggle");
+        toggle = GameObject.FindWithTag("toggle1");
         gameObject = GameObject.FindWithTag("achievement1");
         //test = "test";
         if (gameObject!=null) {

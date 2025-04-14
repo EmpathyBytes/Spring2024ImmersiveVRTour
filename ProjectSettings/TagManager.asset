@@ -10,7 +10,11 @@ TagManager:
   - RightHand
   - test
   - achievement1
+  - toggle1
   - toggle
+  - toggle2
+  - achievement2
+  - drumstick
   layers:
   - Default
   - TransparentFX
