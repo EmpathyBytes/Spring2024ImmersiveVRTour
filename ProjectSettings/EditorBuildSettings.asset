@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Music Room.unity
     guid: 9a2b2a6a2b4e0664b93dc7065ec28a34
   - enabled: 1
-    path: Assets/Scenes/PaperMuseum.unity
+    path: Assets/Scenes/Paper Museum.unity
     guid: 6bd9eb0eaf0639b41adae4aae604a40a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: eb298ff245b4f6c4d825361d44b7faaf, type: 2}

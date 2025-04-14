@@ -22415,7 +22415,7 @@ MonoBehaviour:
   white: {fileID: 2100000, guid: 0845c959909149a419ef01bf0876a74a, type: 2}
   gatechMap: {fileID: 1130897956}
   OVRCameraRig: {fileID: 1221436039}
-  infoCard: {fileID: 587066551}
+  infoCard: {fileID: 782628377}
   audio: {fileID: 1828601337}
 --- !u!65 &1828601339
 BoxCollider:
