@@ -5,6 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - drumSet
+  - achievementManager
+  - achievement1
+  - toggle1
+  - achievement2
+  - toggle2
+  - drumstick
+  - objectCount
+  - achievement3
+  - toggle3
   layers:
   - Default
   - TransparentFX
