@@ -12,6 +12,7 @@ public class collisionHandler : MonoBehaviour
     [SerializeField] private AudioClip hightom;
     [SerializeField] private AudioClip ride;
     [SerializeField] private AudioClip crash;
+    public bool drumPlayed;
 
     private AudioSource audioSource;
     private bool played = false;
@@ -28,6 +29,7 @@ public class collisionHandler : MonoBehaviour
             {
                 audioSource.PlayOneShot(clipToPlay);
                 played = true;
+                drumPlayed = true;
             }
 
             /*Debug.Log(collision.gameObject.name);*/
@@ -62,5 +64,9 @@ public class collisionHandler : MonoBehaviour
             default:
                 return null;
         }
+    }
+
+    public bool getDrumPlayed() {
+        return drumPlayed;
     }
 }
