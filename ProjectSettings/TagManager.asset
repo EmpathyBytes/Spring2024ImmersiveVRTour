@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - drumSet
+  - PlayerFinger
   - achievementManager
   - achievement1
   - toggle1
