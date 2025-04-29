@@ -14,6 +14,10 @@ TagManager:
   - objectCount
   - achievement3
   - toggle3
+  - QDSUIIcon
+  - QDSUIToggleButton
+  - QDSUIToggleBorderlessButton
+  - PlayerFinger
   layers:
   - Default
   - TransparentFX
