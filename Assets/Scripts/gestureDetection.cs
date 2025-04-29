@@ -4,25 +4,11 @@ using UnityEngine;
 
 public class GestureRecognizer : MonoBehaviour
 {
-    /*
-    public XRHandSubsystem handSubsystem;
-    private XRHand left;
-    private XRHand right;
-    public string currGesture = "None"; 
-    */
     [SerializeField] private TextMeshPro RcurrGesture;
     [SerializeField] private TextMeshPro LcurrGesture;
 
     void Start()
     {
-        /*
-        var descriptors = new List<XRHandSubsystemDescriptor>();
-        SubsystemManager.GetSubsystemDescriptors(descriptors);
-        if (descriptors.Count > 0)
-        {
-            handSubsystem = descriptors[0].Create();
-        }
-        */
 
         RcurrGesture.text = "Right";
         LcurrGesture.text = "Left";
