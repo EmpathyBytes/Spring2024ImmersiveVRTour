@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2894,7 +2893,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.0006447434, y: 0.04917067, z: -0.02401883, w: -0.9985014}
-  _ghostProvider: {fileID: 0}
+  _ghostProvider: {fileID: 11400000, guid: ba24f6f783d84ef4f8ff075364e1283c, type: 2}
   _handGhostProvider: {fileID: 0}
   _ovrOffsetMode: 0
 --- !u!1 &163306294
@@ -3715,7 +3714,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 817860360}
   _rigidbody: {fileID: 817860348}
-  _physicsGrabbable: {fileID: 0}
+  _physicsGrabbable: {fileID: 817860359}
   _resetGrabOnGrabsUpdated: 1
   _scoringModifier:
     _positionRotationWeight: 0.8
@@ -6418,7 +6417,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.0006447434, y: 0.04917067, z: -0.02401883, w: -0.9985014}
-  _ghostProvider: {fileID: 0}
+  _ghostProvider: {fileID: 11400000, guid: ba24f6f783d84ef4f8ff075364e1283c, type: 2}
   _handGhostProvider: {fileID: 0}
   _ovrOffsetMode: 0
 --- !u!1 &348653627
@@ -8163,12 +8162,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &453379681
 GameObject:
   m_ObjectHideFlags: 0
@@ -9027,7 +9026,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.0006447434, y: 0.04917067, z: -0.02401883, w: -0.9985014}
-  _ghostProvider: {fileID: 0}
+  _ghostProvider: {fileID: 11400000, guid: ba24f6f783d84ef4f8ff075364e1283c, type: 2}
   _handGhostProvider: {fileID: 0}
   _ovrOffsetMode: 0
 --- !u!1 &507854175
@@ -14376,12 +14375,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &741718682
 GameObject:
   m_ObjectHideFlags: 0
@@ -18608,7 +18607,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.0006447434, y: 0.04917067, z: -0.02401883, w: -0.9985014}
-  _ghostProvider: {fileID: 0}
+  _ghostProvider: {fileID: 11400000, guid: ba24f6f783d84ef4f8ff075364e1283c, type: 2}
   _handGhostProvider: {fileID: 0}
   _ovrOffsetMode: 0
 --- !u!1 &951706377
@@ -22287,10 +22286,10 @@ MonoBehaviour:
   _enableDynamicResolution: 0
   minDynamicResolutionScale: 1
   maxDynamicResolutionScale: 1
-  quest2MinDynamicResolutionScale: 0.7
-  quest2MaxDynamicResolutionScale: 1.3
-  quest3MinDynamicResolutionScale: 0.7
-  quest3MaxDynamicResolutionScale: 1.6
+  quest2MinDynamicResolutionScale: 1
+  quest2MaxDynamicResolutionScale: 1
+  quest3MinDynamicResolutionScale: 1
+  quest3MaxDynamicResolutionScale: 1
   minRenderScale: 0.7
   maxRenderScale: 1
   _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
@@ -22349,7 +22348,7 @@ MonoBehaviour:
   SimultaneousHandsAndControllersEnabled: 0
   _readOnlyWideMotionModeHandPosesEnabled: 0
   wideMotionModeHandPosesEnabled: 0
-  dynamicResolutionVersion: 0
+  dynamicResolutionVersion: 1
 --- !u!114 &1221436042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24927,7 +24926,7 @@ MonoBehaviour:
     - {x: -0.09111304, y: 0.00407137, z: 0.02812923, w: -0.9954349}
     - {x: 0.03761665, y: -0.04293772, z: -0.01328605, w: -0.9982809}
     - {x: -0.0006447434, y: 0.04917067, z: -0.02401883, w: -0.9985014}
-  _ghostProvider: {fileID: 0}
+  _ghostProvider: {fileID: 11400000, guid: ba24f6f783d84ef4f8ff075364e1283c, type: 2}
   _handGhostProvider: {fileID: 0}
   _ovrOffsetMode: 0
 --- !u!1 &1352062260
@@ -25957,12 +25956,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1390321035
 GameObject:
   m_ObjectHideFlags: 0
@@ -32966,7 +32965,7 @@ MonoBehaviour:
   _data: {fileID: 0}
   _pointableElement: {fileID: 561515889}
   _rigidbody: {fileID: 561515880}
-  _physicsGrabbable: {fileID: 0}
+  _physicsGrabbable: {fileID: 561515888}
   _resetGrabOnGrabsUpdated: 1
   _scoringModifier:
     _positionRotationWeight: 0.8
@@ -36141,12 +36140,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &1941817783
 GameObject:
   m_ObjectHideFlags: 0
@@ -38024,12 +38023,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &2074538976
 GameObject:
   m_ObjectHideFlags: 0
@@ -38248,12 +38247,12 @@ MonoBehaviour:
   m_RequiresColorTexture: 0
   m_Version: 2
   m_TaaSettings:
-    quality: 3
-    frameInfluence: 0.1
-    jitterScale: 1
-    mipBias: 0
-    varianceClampScale: 0.9
-    contrastAdaptiveSharpening: 0
+    m_Quality: 3
+    m_FrameInfluence: 0.1
+    m_JitterScale: 1
+    m_MipBias: 0
+    m_VarianceClampScale: 0.9
+    m_ContrastAdaptiveSharpening: 0
 --- !u!1 &2080597588
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ TagManager:
   - QDSUIToggleButton
   - QDSUIToggleBorderlessButton
   - PlayerFinger
+  - Teleport
+  - Arrow
   layers:
   - Default
   - TransparentFX
@@ -25,8 +27,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Target
+  - Arrow
   - 
   - 
   - 
