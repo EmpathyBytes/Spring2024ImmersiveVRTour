@@ -248,10 +248,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bfa12b24de2df43b723109dbe4aa30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftIndex: {fileID: 0}
-  rightIndex: {fileID: 0}
-  leftControllerIndex: {fileID: 0}
-  rightControllerIndex: {fileID: 0}
+  leftIndex: {fileID: 881135532}
+  rightIndex: {fileID: 881135531}
+  leftControllerIndex: {fileID: 881135534}
+  rightControllerIndex: {fileID: 881135533}
   lidistance: 0
   ridistance: 0
   licdistance: 0
@@ -724,10 +724,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bfa12b24de2df43b723109dbe4aa30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftIndex: {fileID: 0}
-  rightIndex: {fileID: 0}
-  leftControllerIndex: {fileID: 0}
-  rightControllerIndex: {fileID: 0}
+  leftIndex: {fileID: 881135532}
+  rightIndex: {fileID: 881135531}
+  leftControllerIndex: {fileID: 881135534}
+  rightControllerIndex: {fileID: 881135533}
   lidistance: 0
   ridistance: 0
   licdistance: 0
@@ -1662,6 +1662,17 @@ MonoBehaviour:
   gameObject: {fileID: 0}
   toggle: {fileID: 0}
   drumStick: []
+--- !u!114 &684384400 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3392185710445758373, guid: 506dba8fef804e44c98d8443c6b5b03f, type: 3}
+  m_PrefabInstance: {fileID: 881135530}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a379f34d4f4f2e408d34f14bfb753ce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2616,6 +2627,26 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 506dba8fef804e44c98d8443c6b5b03f, type: 3}
+--- !u!1 &881135531 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1100326479082227291, guid: 506dba8fef804e44c98d8443c6b5b03f, type: 3}
+  m_PrefabInstance: {fileID: 881135530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &881135532 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4395857879615314792, guid: 506dba8fef804e44c98d8443c6b5b03f, type: 3}
+  m_PrefabInstance: {fileID: 881135530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &881135533 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4584669567923303836, guid: 506dba8fef804e44c98d8443c6b5b03f, type: 3}
+  m_PrefabInstance: {fileID: 881135530}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &881135534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6879393106450519866, guid: 506dba8fef804e44c98d8443c6b5b03f, type: 3}
+  m_PrefabInstance: {fileID: 881135530}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1034746759
 GameObject:
   m_ObjectHideFlags: 0
@@ -2911,7 +2942,7 @@ PrefabInstance:
     - target: {fileID: 2847409626846431511, guid: 0588bacb79eabec42b64d5786435932c, type: 3}
       propertyPath: leftIndex
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 881135532}
     - target: {fileID: 2847409626846431511, guid: 0588bacb79eabec42b64d5786435932c, type: 3}
       propertyPath: sceneName
       value: Freshman Dorm
@@ -2919,7 +2950,7 @@ PrefabInstance:
     - target: {fileID: 2847409626846431511, guid: 0588bacb79eabec42b64d5786435932c, type: 3}
       propertyPath: rightIndex
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 881135531}
     - target: {fileID: 2847409626846431511, guid: 0588bacb79eabec42b64d5786435932c, type: 3}
       propertyPath: OVRCameraRig
       value: 
@@ -2931,11 +2962,11 @@ PrefabInstance:
     - target: {fileID: 2847409626846431511, guid: 0588bacb79eabec42b64d5786435932c, type: 3}
       propertyPath: leftControllerIndex
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 881135534}
     - target: {fileID: 2847409626846431511, guid: 0588bacb79eabec42b64d5786435932c, type: 3}
       propertyPath: rightControllerIndex
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 881135533}
     - target: {fileID: 5668814201716198398, guid: 0588bacb79eabec42b64d5786435932c, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -3316,10 +3347,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bfa12b24de2df43b723109dbe4aa30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftIndex: {fileID: 0}
-  rightIndex: {fileID: 0}
-  leftControllerIndex: {fileID: 0}
-  rightControllerIndex: {fileID: 0}
+  leftIndex: {fileID: 881135532}
+  rightIndex: {fileID: 881135531}
+  leftControllerIndex: {fileID: 881135534}
+  rightControllerIndex: {fileID: 881135533}
   lidistance: 0
   ridistance: 0
   licdistance: 0
@@ -4427,10 +4458,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24bfa12b24de2df43b723109dbe4aa30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftIndex: {fileID: 0}
-  rightIndex: {fileID: 0}
-  leftControllerIndex: {fileID: 0}
-  rightControllerIndex: {fileID: 0}
+  leftIndex: {fileID: 881135532}
+  rightIndex: {fileID: 881135531}
+  leftControllerIndex: {fileID: 881135534}
+  rightControllerIndex: {fileID: 881135533}
   lidistance: 0
   ridistance: 0
   licdistance: 0
@@ -5568,7 +5599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b14164f8f23faae4293baeb84485b3d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hand: {fileID: 0}
+  _hand: {fileID: 684384400}
 --- !u!114 &1814699033
 MonoBehaviour:
   m_ObjectHideFlags: 0
