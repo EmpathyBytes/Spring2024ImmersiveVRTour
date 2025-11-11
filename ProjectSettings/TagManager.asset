@@ -20,6 +20,15 @@ TagManager:
   - PlayerFinger
   - Teleport
   - Arrow
+  - QDSUIBackplateGradient
+  - Paddle
+  - QDSUIToggleSwitch
+  - QDSUITooltip
+  - QDSUISharedThemeColor
+  - QDSUIAccentColor
+  - QDSUIBorderlessButton
+  - QDSUISecondaryButton
+  - QDSUITextSecondaryColor
   layers:
   - Default
   - TransparentFX
@@ -29,7 +38,7 @@ TagManager:
   - UI
   - Target
   - Arrow
-  - 
+  - PlayerBox
   - 
   - 
   - 
