@@ -10,6 +10,7 @@ public class Arrow : MonoBehaviour
     private Rigidbody _rigidBody;
     private bool _inAir = false;
     private Vector3 _lastPosition = Vector3.zero;
+    public GameObject floatingTextPrefab;
     
 
     private void Awake(){
@@ -62,6 +63,26 @@ public class Arrow : MonoBehaviour
                     body.AddForce(_rigidBody.velocity, ForceMode.Impulse);
                 }
                 Stop();
+
+                TargetPoints target = hitInfo.transform.GetComponent<TargetPoints>();
+                if (target != null && floatingTextPrefab != null)
+                    {
+                        int points = target.pointAmount;
+                        string message;
+                        if (points != 10) {
+                            message = "+" + points;
+                        } else {
+                            message = "Bullseye! +10";
+                        }
+                        target.controller.hitDecide(target);
+                        Color color = target.getColor();
+                        // hitInfo: from your linecast
+                        Vector3 spawnPos = hitInfo.point + hitInfo.transform.forward * 0.1f + Vector3.up * 0.05f;
+
+
+                        GameObject fx = Instantiate(floatingTextPrefab, spawnPos, Quaternion.identity);
+                        fx.GetComponent<FloatingText3D>().SetText(message, color);
+                    }
             }
         }
     }

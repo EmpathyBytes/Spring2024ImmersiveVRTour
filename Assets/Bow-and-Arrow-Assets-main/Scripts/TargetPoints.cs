@@ -6,15 +6,14 @@ public class TargetPoints : MonoBehaviour
 {
 
     public int pointAmount = 0;
-    public PointCount pointCounter;
 
     private Renderer targetRenderer;
-    public Color flashColor = Color.green;
+    public float flashAmount = 1.5f;
     public float flashDuration = 0.2f;
     private Color originalColor;
 
     private bool hasHit = false;
-
+    public ArcheryTarget controller;
 
     void Start()
     {
@@ -27,25 +26,37 @@ public class TargetPoints : MonoBehaviour
     
     void OnTriggerEnter(Collider other) {
 
-        if (hasHit) return;
+        
 
         if (other.CompareTag("Arrow"))
         {
-            if (pointCounter != null)
-            {
-                hasHit = true;
-                pointCounter.addPointCount(pointAmount);
-                StartCoroutine(FlashTarget());
-            }
+
+            //controller.hitDecide(this);
+
         }
+    }
+
+    public void Hit(PointCount pointCounter){
+        if (hasHit) return;
+        hasHit = true;
+        pointCounter.addPointCount(pointAmount);
+        StartCoroutine(FlashTarget());
     }
 
     private IEnumerator FlashTarget(){
         if (targetRenderer == null) yield break;
 
+        Color flashColor = Color.Lerp(originalColor, Color.white, flashAmount);
+
         targetRenderer.material.color = flashColor;
         yield return new WaitForSeconds(flashDuration);
         targetRenderer.material.color = originalColor;
+
         hasHit = false;
+
+        controller.ResetScored();
+    }
+    public Color getColor(){
+        return originalColor;
     }
 }
