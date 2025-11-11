@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   tip: {fileID: 1769337598482281036}
+  floatingTextPrefab: {fileID: 588469616947035098, guid: dcf2f4ffe9a524cdfb542ea4cac5bd77, type: 3}
 --- !u!65 &3059229624069857386
 BoxCollider:
   m_ObjectHideFlags: 0
