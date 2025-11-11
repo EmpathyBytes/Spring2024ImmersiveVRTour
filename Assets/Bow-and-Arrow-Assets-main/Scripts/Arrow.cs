@@ -74,7 +74,7 @@ public class Arrow : MonoBehaviour
                         } else {
                             message = "Bullseye! +10";
                         }
-                        
+                        target.controller.hitDecide(target);
                         Color color = target.getColor();
                         // hitInfo: from your linecast
                         Vector3 spawnPos = hitInfo.point + hitInfo.transform.forward * 0.1f + Vector3.up * 0.05f;

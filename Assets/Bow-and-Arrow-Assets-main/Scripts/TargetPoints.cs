@@ -31,7 +31,7 @@ public class TargetPoints : MonoBehaviour
         if (other.CompareTag("Arrow"))
         {
 
-            controller.hitDecide(this);
+            //controller.hitDecide(this);
 
         }
     }
