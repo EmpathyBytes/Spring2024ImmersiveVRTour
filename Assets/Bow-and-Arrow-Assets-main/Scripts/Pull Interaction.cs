@@ -11,6 +11,8 @@ public class PullInteraction : MonoBehaviour
     public Vector3 startCenter;
     public LineRenderer lineRenderer;
 
+    public LineRenderer trajectory;
+
     public Transform arrowNotch;
     public Vector3 arrowNotchStart;
 
@@ -62,6 +64,18 @@ public class PullInteraction : MonoBehaviour
 
         stringCenter.localPosition = startCenter + new Vector3(0f, 0f, clampedZ);
         lineRenderer.SetPosition(1, stringCenter.localPosition);
+
+        pullAmount = Mathf.InverseLerp(maxPull, minPull, clampedZ);
+
+        if (trajectory != null)
+        {
+            if (isGrabbed){
+                trajectory.enabled = true;
+            } else{
+                trajectory.enabled = false;
+            }
+        }
+
     }
 
     public void OnGrabbed(){
