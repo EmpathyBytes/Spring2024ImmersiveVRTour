@@ -7,6 +7,8 @@ public class FollowCamera : MonoBehaviour
     [SerializeField] private float followSpeed = 5f; // Adjust for faster/slower follow
     [SerializeField] private float rotationSpeed = 10f; // Adjust for faster/slower rotation
     [SerializeField] private float distanceFromCamera = 2f; // How far in front of the camera the object stays
+    [SerializeField] private float horizontalOffset = 0.5f; // positive = right, negative = left
+
 
     private Vector3 _velocity = Vector3.zero; // Used for SmoothDamp
     public bool _switch = false;
@@ -20,7 +22,11 @@ public class FollowCamera : MonoBehaviour
         Transform camTransform = Camera.main.transform;
 
         // Calculate the target position (in front of the camera)
-        Vector3 targetPosition = camTransform.position + camTransform.forward * distanceFromCamera;
+        // Calculate target position in front AND to the right
+        Vector3 targetPosition = camTransform.position 
+                                + camTransform.forward * distanceFromCamera 
+                                + camTransform.right * horizontalOffset;
+
 
         if (_switch) {
             transform.position = targetPosition;

@@ -20,7 +20,7 @@ public class ArrowSpawner : MonoBehaviour
     [Header("Arrow & Score Tracking")]
     public int maxArrows = 5;            // Number of arrows before reset
     private int arrowsShot = 0;          // Counter
-
+    private int arrowsLeft = 5;
     private List<GameObject> spawnedArrows = new List<GameObject>();
 
 
@@ -38,6 +38,7 @@ public class ArrowSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        arrowsLeft = maxArrows - arrowsShot;
 
         if (bowGrabbed && !arrowNotched) {
             arrowNotched = true;
@@ -84,6 +85,10 @@ public class ArrowSpawner : MonoBehaviour
         spawnedArrows.Clear(); // Clear the list
     }
 
+    public void ResetAllArrowsExternal(){
+        DestroyAllArrows();
+    }
+
 
     public void OnGrabbed() {
 
@@ -114,5 +119,9 @@ public class ArrowSpawner : MonoBehaviour
         {
             Debug.LogWarning("ArrowPrefab or SpawnPoint not assigned!");
         }
+    }
+
+    public int getArrowsLeft(){
+        return arrowsLeft;
     }
 }
