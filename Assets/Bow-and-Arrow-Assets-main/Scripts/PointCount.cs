@@ -16,6 +16,7 @@ public class PointCount : MonoBehaviour
     }
     public void addPointCount(int addi){
         pointCount += addi;
+        OlympicsTrophyDisplay.Instance.UpdateArchery(pointCount);
         UpdateScoreText();
     }
 
