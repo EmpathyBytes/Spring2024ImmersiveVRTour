@@ -80,7 +80,7 @@ public class AtariRunningScreen : MonoBehaviour
                 if (station.ButtonPressed)
                 {
                     if (!previouslyPressed)
-                        velocities[0] += 1.31f;
+                        velocities[0] += 1.65f;
 
                     previouslyPressed = true;
                 }
@@ -89,21 +89,21 @@ public class AtariRunningScreen : MonoBehaviour
 
                 var rng = Random.value;
                 if (rng < 0.004f)
-                    velocities[1] += 8.9f;
+                    velocities[1] += 7.4f;
                 else if (rng < 0.05f)
-                    velocities[1] += 1.6f;
+                    velocities[1] += 1.4f;
                 else if (rng < 0.15f)
-                    velocities[1] += 0.4f;
+                    velocities[1] += 0.33f;
                 else if (rng < 0.35f)
-                    velocities[1] += 0.12f;
+                    velocities[1] += 0.09f;
 
                 rng = Random.value;
                 if (rng < 0.01f)
-                    velocities[2] += 5.5f;
+                    velocities[2] += 5.1f;
                 else if (rng < 0.05f)
-                    velocities[2] += 1.9f;
+                    velocities[2] += 1.5f;
                 else if (rng < 0.7f)
-                    velocities[2] += 0.06f;
+                    velocities[2] += 0.041f;
 
                 for (int i = 0; i < 3; i++)
                 {

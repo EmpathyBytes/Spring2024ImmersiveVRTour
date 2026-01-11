@@ -137,7 +137,7 @@ public class AtariArcheryScreen : MonoBehaviour
         instructions.GetComponentInChildren<TextMeshPro>().text =
             $"Game over! Your score is {score}. Press the button to exit.";
 
-        OlympicsTrophyDisplay.Instance.UpdateArchery(score);
+        OlympicsTrophyDisplay.Instance.UpdateAtariArchery(score);
 
         yield return new WaitForSeconds(0.4f);
         yield return new WaitUntil(() => station.ButtonPressed);
