@@ -17,9 +17,15 @@ public static OlympicsTrophyDisplay Instance { get; private set; }
     private int requiredObjects;
 
     [SerializeField]
+    private int requiredAtariArcheryScore;
+
+    [SerializeField]
     private int requiredArcheryScore;
 
     private int currentCollected;
+    
+    private bool completedAtariArchery;
+    private bool completedArchery;
 
     private void Awake() => Instance = this;
 
@@ -32,9 +38,19 @@ public static OlympicsTrophyDisplay Instance { get; private set; }
 
     public void UpdateRunning() => runningTrophy.SetActive(true);
 
+    public void UpdateAtariArchery(int score)
+    {
+        if (score >= requiredAtariArcheryScore)
+            completedAtariArchery = true;
+        if (completedArchery && completedAtariArchery)
+            archeryTrophy.SetActive(true);
+    }
+
     public void UpdateArchery(int score)
     {
         if (score >= requiredArcheryScore)
+            completedArchery = true;
+        if (completedArchery && completedAtariArchery)
             archeryTrophy.SetActive(true);
     }
 
