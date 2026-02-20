@@ -1,50 +1,45 @@
 using UnityEngine;
-using TMPro;
-using Oculus.Interaction; 
+using Oculus.Interaction;
 
 public class BallScoringManager : MonoBehaviour
 {
     [Header("References")]
     public Rigidbody ballRb;
-    public Grabbable grabbable; 
-
+    public Grabbable grabbable;
+    public EnemyAI enemyAI;
     [Header("Zones")]
     public Collider playerSide;
     public Collider enemySide;
     public Collider floor;
+    public Collider playerZone;
 
     [Header("Serve Settings")]
     public Transform playerServePoint;
     public Transform enemyServePoint;
     public float serveHeight = 1.2f;
-    public float serveDelay = 2f;
-
-    [Header("Score UI")]
-    public TextMeshProUGUI playerScoreText;
-    public TextMeshProUGUI enemyScoreText;
+    public float serveDelay = 1.2f;
 
     private int playerBounces = 0;
     private int enemyBounces = 0;
-    private int playerScore = 0;
-    private int enemyScore = 0;
 
     private bool rallyActive = false;
-    private string nextServer = "Player"; 
+    private string nextServer = "Player";
+
+    private int totalPoints = 0;
 
     void Start()
     {
-        if (ballRb == null) ballRb = GetComponent<Rigidbody>();
-        if (grabbable == null) grabbable = GetComponent<Grabbable>();
+        if (!ballRb) ballRb = GetComponent<Rigidbody>();
+        if (!grabbable) grabbable = GetComponent<Grabbable>();
 
         nextServer = (Random.value > 0.5f) ? "Player" : "Enemy";
 
         grabbable.WhenPointerEventRaised += OnPointerEvent;
 
-        UpdateScoreUI();
         StartCoroutine(ServeAfterDelay(1f));
     }
 
-    void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
         if (!rallyActive) return;
 
@@ -52,60 +47,76 @@ public class BallScoringManager : MonoBehaviour
         {
             playerBounces++;
             enemyBounces = 0;
-            CheckScoring("Player");
+
+            ScoreBoardManager.Instance.IncrementRally();
+            CheckBounceLogic("Player");
         }
         else if (collision.collider == enemySide)
         {
             enemyBounces++;
             playerBounces = 0;
-            CheckScoring("Enemy");
+
+            ScoreBoardManager.Instance.IncrementRally();
+            CheckBounceLogic("Enemy");
         }
         else if (collision.collider == floor)
         {
-            Debug.Log("Ball hit floor");
             EndRally("Floor");
         }
     }
 
-    void OnPointerEvent(PointerEvent evt)
+    private void OnPointerEvent(PointerEvent evt)
     {
-        if (evt.Type == PointerEventType.Unselect && !rallyActive && nextServer == "Player")
+        if (evt.Type == PointerEventType.Unselect &&
+            !rallyActive &&
+            nextServer == "Player")
         {
             rallyActive = true;
             ballRb.isKinematic = false;
         }
     }
 
-    void CheckScoring(string side)
+    private void CheckBounceLogic(string side)
     {
         if (side == "Player" && playerBounces >= 2)
         {
-            enemyScore++;
-            nextServer = "Enemy";
+            ScoreBoardManager.Instance.AddEnemyPoint();
             EndRally("Enemy");
         }
         else if (side == "Enemy" && enemyBounces >= 2)
         {
-            playerScore++;
-            nextServer = "Player";
+            ScoreBoardManager.Instance.AddPlayerPoint();
             EndRally("Player");
         }
     }
 
-    void EndRally(string winner)
+    private void EndRally(string winner)
     {
         rallyActive = false;
-        UpdateScoreUI();
-
         playerBounces = 0;
         enemyBounces = 0;
+
         ballRb.velocity = Vector3.zero;
         ballRb.angularVelocity = Vector3.zero;
 
+        totalPoints++;
+
+        UpdateServer();
+
+        ScoreBoardManager.Instance.IncrementRally();
         StartCoroutine(ServeAfterDelay(serveDelay));
     }
 
-    System.Collections.IEnumerator ServeAfterDelay(float delay)
+
+    private void UpdateServer()
+    {
+        if (totalPoints % 2 == 0)
+        {
+            nextServer = (nextServer == "Player") ? "Enemy" : "Player";
+        }
+    }
+
+    private System.Collections.IEnumerator ServeAfterDelay(float delay)
     {
         yield return new WaitForSeconds(delay);
         ServeBall(nextServer);
@@ -113,8 +124,10 @@ public class BallScoringManager : MonoBehaviour
 
     void ServeBall(string side)
     {
+        if (!GameManager.GameIsActive)
+            return;
         Transform servePoint = (side == "Player") ? playerServePoint : enemyServePoint;
-        if (servePoint == null) return;
+        if (!servePoint) return;
 
         ballRb.velocity = Vector3.zero;
         ballRb.angularVelocity = Vector3.zero;
@@ -124,21 +137,37 @@ public class BallScoringManager : MonoBehaviour
 
         if (side == "Enemy")
         {
-            Invoke(nameof(AIServe), 1f);
+            Invoke(nameof(AIServe), 0.8f);
         }
-
     }
 
     void AIServe()
     {
         ballRb.isKinematic = false;
-        ballRb.AddForce(Vector3.forward * 3f + Vector3.up * 2f, ForceMode.VelocityChange);
+
+        Vector3 targetPoint = enemyAI.GetRandomPointInZone(playerZone, 0.45f);
+
+        Vector3 dir = (targetPoint - ballRb.position).normalized;
+        float servePower = 4f;
+
+        ballRb.AddForce(dir * servePower + Vector3.up * 1.5f, ForceMode.VelocityChange);
+
         rallyActive = true;
     }
 
-    void UpdateScoreUI()
+
+    public void BeginNewServe(string server)
     {
-        if (playerScoreText) playerScoreText.text = $"Player: {playerScore}";
-        if (enemyScoreText) enemyScoreText.text = $"Enemy: {enemyScore}";
+        nextServer = server;
+
+        rallyActive = false;
+
+        ballRb.velocity = Vector3.zero;
+        ballRb.angularVelocity = Vector3.zero;
+        ballRb.isKinematic = true;
+
+        StartCoroutine(ServeAfterDelay(0.5f));
     }
+
+   
 }

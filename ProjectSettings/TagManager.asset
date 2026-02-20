@@ -29,6 +29,7 @@ TagManager:
   - QDSUIBorderlessButton
   - QDSUISecondaryButton
   - QDSUITextSecondaryColor
+  - Ball
   layers:
   - Default
   - TransparentFX
