@@ -2,13 +2,16 @@ using UnityEngine;
 
 public class OlympicsTrophyDisplay : MonoBehaviour
 {
-public static OlympicsTrophyDisplay Instance { get; private set; }
+    public static OlympicsTrophyDisplay Instance { get; private set; }
 
     [SerializeField]
     private GameObject runningTrophy;
 
     [SerializeField]
     private GameObject archeryTrophy;
+
+    [SerializeField]
+    private GameObject dodgeballTrophy;
 
     [SerializeField]
     private GameObject explorationTrophy;
@@ -22,8 +25,11 @@ public static OlympicsTrophyDisplay Instance { get; private set; }
     [SerializeField]
     private int requiredArcheryScore;
 
+    [SerializeField]
+    private int requiredDodgeballScore;
+
     private int currentCollected;
-    
+
     private bool completedAtariArchery;
     private bool completedArchery;
 
@@ -54,4 +60,9 @@ public static OlympicsTrophyDisplay Instance { get; private set; }
             archeryTrophy.SetActive(true);
     }
 
+    public void UpdateDodgeball(int score)
+    {
+        if (score >= requiredDodgeballScore)
+            dodgeballTrophy.SetActive(true);
+    }
 }

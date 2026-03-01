@@ -148,6 +148,8 @@ public class AtariDodgeballScreen : MonoBehaviour
         foreach (var ball in balls)
             Destroy(ball.Transform.gameObject);
 
+        OlympicsTrophyDisplay.Instance.UpdateDodgeball(ticks / 60);
+
         station.Reset();
         gameObject.SetActive(false);
     }
