@@ -29,6 +29,7 @@ TagManager:
   - QDSUIBorderlessButton
   - QDSUISecondaryButton
   - QDSUITextSecondaryColor
+  - OlympicTorch
   layers:
   - Default
   - TransparentFX
