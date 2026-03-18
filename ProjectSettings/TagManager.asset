@@ -30,6 +30,7 @@ TagManager:
   - QDSUISecondaryButton
   - QDSUITextSecondaryColor
   - OlympicTorch
+  - FireStarter
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class Arrow : MonoBehaviour
     private bool _inAir = false;
     private Vector3 _lastPosition = Vector3.zero;
     public GameObject floatingTextPrefab;
+    public ParticleSystem fireParticles;
     
 
     private void Awake(){
@@ -61,6 +62,9 @@ public class Arrow : MonoBehaviour
                     _rigidBody.interpolation = RigidbodyInterpolation.None;
                     transform.parent = hitInfo.transform;
                     body.AddForce(_rigidBody.velocity, ForceMode.Impulse);
+                }
+                if (hitInfo.transform.CompareTag("FireStarter") && fireParticles != null){
+                fireParticles.Play();
                 }
                 Stop();
 
