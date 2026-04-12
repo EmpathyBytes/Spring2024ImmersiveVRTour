@@ -29,6 +29,9 @@ public class AtariStation : MonoBehaviour
     [SerializeField]
     private AtariDodgeballScreen dodgeballScreen;
 
+    [SerializeField]
+    private AtariKayakingScreen kayakingScreen;
+
     private Vector3 currentDirection;
     private bool buttonPressed;
 
@@ -56,6 +59,12 @@ public class AtariStation : MonoBehaviour
     {
         titleScreen.gameObject.SetActive(false);
         dodgeballScreen.gameObject.SetActive(true);
+    }
+
+    public void LoadKayaking()
+    {
+        titleScreen.gameObject.SetActive(false);
+        kayakingScreen.gameObject.SetActive(true);
     }
 
     public void MoveJoystick(Vector3 direction) =>

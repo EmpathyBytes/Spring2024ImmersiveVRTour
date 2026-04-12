@@ -57,6 +57,9 @@ public class AtariTitleScreen : MonoBehaviour
                     case 2:
                         station.LoadDodgeball();
                         break;
+                    case 3:
+                        station.LoadKayaking();
+                        break;
                 }
             }
 

@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Meta.XR.ImmersiveDebugger.UserInterface.Generic;
 using TMPro;
 using UnityEngine;
 
