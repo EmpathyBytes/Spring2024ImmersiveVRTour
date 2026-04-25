@@ -96,7 +96,7 @@ public class AtariKayakingScreen : MonoBehaviour
 
                 player.position += new Vector3(velocity.x, Mathf.Clamp(velocity.y, -10000, .0067f));
                 player.localPosition = new(
-                    Mathf.Clamp(player.localPosition.x, -2.02f, 2.02f),
+                    Mathf.Clamp(player.localPosition.x, -2.12f, 2.12f),
                     Mathf.Clamp(player.localPosition.y, -10000, 4.61f),
                     0
                 );
@@ -106,54 +106,54 @@ public class AtariKayakingScreen : MonoBehaviour
                     lost = true;
                     break;
                 }
-            }
 
-            rockTimer++;
+                rockTimer++;
 
-            if (rockTimer == 427)
-            {
-                var gaps = score > 13 ? 4 : 5;
-                var gapStart = Random.Range(1, 19 - gaps - 1);
-
-                var row = new List<Transform>();
-                for (var i = 0; i < 19; i++)
+                if (rockTimer == 427 / 4)
                 {
-                    if (i >= gapStart && i < gapStart + gaps)
-                        continue;
+                    var gaps = score > 13 ? 4 : 5;
+                    var gapStart = Random.Range(1, 19 - gaps - 1);
 
-                    var rock = Instantiate(this.rock, transform);
-                    rock.transform.localPosition = new(-2.72f, 4.8f, 0);
-                    rock.gameObject.SetActive(true);
-                    rock.position += new Vector3(0.3f * i, 0);
-                    row.Add(rock);
-                }
-                rocks.Add(row);
-                rockTimer = 0;
-                score++;
-                scoreText.text = $"Score: {score}";
-            }
+                    var row = new List<Transform>();
+                    for (var i = 0; i < 19; i++)
+                    {
+                        if (i >= gapStart && i < gapStart + gaps)
+                            continue;
 
-            for (var i = rocks.Count - 1; i >= 0; i--)
-            {
-                var row = rocks[i];
-                var delete = false;
-
-                foreach (var rock in row)
-                {
-                    if (boatCollider.IsTouching(rock.GetComponent<BoxCollider2D>()))
-                        rockHitVelocity = -0.1f;
-
-                    rock.transform.position += Vector3.down * 0.0053f;
-                    if (rock.transform.position.y < -7f)
-                        delete = true;
+                        var rock = Instantiate(this.rock, transform);
+                        rock.transform.localPosition = new(-2.72f, 4.8f, 0);
+                        rock.gameObject.SetActive(true);
+                        rock.position += new Vector3(0.3f * i, 0);
+                        row.Add(rock);
+                    }
+                    rocks.Add(row);
+                    rockTimer = 0;
+                    score++;
+                    scoreText.text = $"Score: {score}";
                 }
 
-                if (delete)
+                for (var i = rocks.Count - 1; i >= 0; i--)
                 {
+                    var row = rocks[i];
+                    var delete = false;
+
                     foreach (var rock in row)
-                        Destroy(rock.gameObject);
+                    {
+                        if (boatCollider.IsTouching(rock.GetComponent<BoxCollider2D>()))
+                            rockHitVelocity = -0.1f;
 
-                    rocks.RemoveAt(i);
+                        rock.transform.position += Vector3.down * 0.0053f * 4;
+                        if (rock.transform.position.y < -7f)
+                            delete = true;
+                    }
+
+                    if (delete)
+                    {
+                        foreach (var rock in row)
+                            Destroy(rock.gameObject);
+
+                        rocks.RemoveAt(i);
+                    }
                 }
             }
 
@@ -187,7 +187,7 @@ public class AtariKayakingScreen : MonoBehaviour
     {
         if (station.ButtonPressed)
         {
-            if (recoveryTimer < 18)
+            if (recoveryTimer < 14)
             {
                 if (!previouslyPressed)
                     velocity.y = 0.09f;
@@ -225,7 +225,7 @@ public class AtariKayakingScreen : MonoBehaviour
         {
             if (previouslyPressed)
             {
-                var frames = Mathf.Lerp(0, 20, Mathf.InverseLerp(0.17f, 0.67f, power));
+                var frames = Mathf.Lerp(0, 15, Mathf.InverseLerp(0.17f, 0.67f, power));
                 recoveryTimer = -frames;
             }
 

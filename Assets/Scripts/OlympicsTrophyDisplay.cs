@@ -48,6 +48,9 @@ public class OlympicsTrophyDisplay : MonoBehaviour
     [SerializeField]
     private Volume volume;
 
+    [SerializeField]
+    private Color[] fireworkColors;
+
     private bool activated;
 
     private void Awake() => Instance = this;
@@ -78,36 +81,48 @@ public class OlympicsTrophyDisplay : MonoBehaviour
     {
         volume.profile = Instantiate(volume.profile);
         volume.profile.TryGet<ColorAdjustments>(out var adjustments);
+        var skybox = Instantiate(RenderSettings.skybox);
+
+        RenderSettings.skybox = skybox;
 
         yield return new WaitForSeconds(5.5f);
-        yield return StartCoroutine(ChangeLighting(adjustments, 0f, -7f));
+
+        var time = 0f;
+        while (time < 5f)
+        {
+            adjustments.postExposure.value = Mathf.Lerp(0, -7, time / 5f);
+            skybox.SetFloat("_Exposure", Mathf.Lerp(1, 0, time / 5f));
+            time += Time.deltaTime;
+            yield return null;
+        }
 
         for (int i = 0; i < 3; i++)
         {
             fireworks.Play();
-            while (fireworks.isPlaying)
-                yield return null;
-            yield return new WaitForSeconds(0.3f);
+            yield return new WaitForSeconds(1.5f);
+            for (int j = 0; j < 10; j++)
+            {
+                adjustments.colorFilter.value = fireworkColors[
+                    Random.Range(0, fireworkColors.Length)
+                ];
+                yield return new WaitForSeconds(1.7f / 8f);
+            }
+            adjustments.colorFilter.value = Color.white;
+            yield return new WaitForSeconds(.2f);
         }
 
-        while (fireworks.isPlaying)
-            yield return null;
+        yield return new WaitForSeconds(1.2f);
 
-        yield return new WaitForSeconds(2.5f);
-
-        yield return StartCoroutine(ChangeLighting(adjustments, -7f, 0f));
-    }
-
-    private IEnumerator ChangeLighting(ColorAdjustments adjustments, float start, float end)
-    {
-        var time = 0f;
+        time = 0f;
         while (time < 5f)
         {
-            adjustments.postExposure.value = Mathf.Lerp(start, end, time / 5f);
+            adjustments.postExposure.value = Mathf.Lerp(-7, 0, time / 5f);
+            skybox.SetFloat("_Exposure", Mathf.Lerp(0, 1, time / 5f));
             time += Time.deltaTime;
             yield return null;
         }
-        adjustments.postExposure.value = end;
+        adjustments.postExposure.value = 0;
+        skybox.SetFloat("_Exposure", 1);
     }
 
     public void UpdateCollected()
