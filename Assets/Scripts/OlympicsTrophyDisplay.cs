@@ -71,11 +71,11 @@ public class OlympicsTrophyDisplay : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-            StartCoroutine(Fireworks());
-    }
+    // private void Update()
+    // {
+    //     if (Input.GetKeyDown(KeyCode.Space))
+    //         StartCoroutine(Fireworks());
+    // }
 
     private IEnumerator Fireworks()
     {
