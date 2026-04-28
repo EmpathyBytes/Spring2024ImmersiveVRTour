@@ -46,6 +46,7 @@ public class StarShipMovement : MonoBehaviour
 
         agent.enabled = true;
 
+        // Let the agent control the ROOT orientation on slopes.
         agent.updateRotation = true;
         agent.updateUpAxis = true;
 
