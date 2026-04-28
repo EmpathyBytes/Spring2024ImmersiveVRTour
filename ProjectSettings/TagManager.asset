@@ -29,6 +29,7 @@ TagManager:
   - QDSUIBorderlessButton
   - QDSUISecondaryButton
   - QDSUITextSecondaryColor
+  - RobotWalkway
   layers:
   - Default
   - TransparentFX
@@ -39,8 +40,8 @@ TagManager:
   - Target
   - Arrow
   - PlayerBox
-  - 
-  - 
+  - SideWalk
+  - Obstacle
   - 
   - 
   - 
