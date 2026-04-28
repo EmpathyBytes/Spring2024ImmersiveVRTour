@@ -29,7 +29,8 @@ TagManager:
   - QDSUIBorderlessButton
   - QDSUISecondaryButton
   - QDSUITextSecondaryColor
-  - RobotWalkway
+  - OlympicTorch
+  - FireStarter
   layers:
   - Default
   - TransparentFX
@@ -40,8 +41,8 @@ TagManager:
   - Target
   - Arrow
   - PlayerBox
-  - SideWalk
-  - Obstacle
+  - FireSource
+  - Fireworks
   - 
   - 
   - 
