@@ -11,7 +11,8 @@ public class Arrow : MonoBehaviour
     private bool _inAir = false;
     private Vector3 _lastPosition = Vector3.zero;
     public GameObject floatingTextPrefab;
-    
+    public ParticleSystem fireParticles;
+    private bool _isLit = false;
 
     private void Awake(){
         _rigidBody = GetComponent<Rigidbody>();
@@ -62,6 +63,7 @@ public class Arrow : MonoBehaviour
                     transform.parent = hitInfo.transform;
                     body.AddForce(_rigidBody.velocity, ForceMode.Impulse);
                 }
+
                 Stop();
 
                 TargetPoints target = hitInfo.transform.GetComponent<TargetPoints>();
@@ -95,6 +97,28 @@ public class Arrow : MonoBehaviour
     private void SetPhysics(bool usePhysics) {
         _rigidBody.useGravity = usePhysics;
         _rigidBody.isKinematic = !usePhysics;
+    }
+
+    public void Ignite()
+    {
+        if (!_isLit && fireParticles != null)
+        {
+            _isLit = true;
+            fireParticles.Play();
+            Debug.Log("Arrow is now on fire!");
+        }
+    }
+    public void Extinguish()
+    {
+        if (_isLit && fireParticles != null)
+        {
+            _isLit = false;
+            fireParticles.Stop();
+        }
+    }
+    
+    public bool getIsLit(){
+        return _isLit;
     }
 
 }
