@@ -1,6 +1,12 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/Reading Room/Global Volume Profile.asset.meta
 guid: 08a44ef0d1dbe004c977ac03327778f4
 NativeFormatImporter:
+========
+guid: 48a353055df9d2740a6de787880b2f5d
+folderAsset: yes
+DefaultImporter:
+>>>>>>>> f58fcce956fa9b75187270daaf66c6bc90e8ff0f:Assets/Models/Starship.meta
   externalObjects: {}
   mainObjectFileID: 11400000
   userData: 
