@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: b07f841fa1a48114bbb7bf0049f9be78
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - leftIndex: {instanceID: 0}
+  - rightIndex: {instanceID: 0}
+  - leftControllerIndex: {instanceID: 0}
+  - rightControllerIndex: {instanceID: 0}
+  - originalSkybox: {fileID: 2100000, guid: f72b189d70b13a046b64870f5620a744, type: 2}
+  - megaSunMaterial: {fileID: 2100000, guid: c52c5d7968fa6c9499b0b5752f899bfb, type: 2}
+  - bushRenderer: {fileID: -7511558181221131132, guid: 5dc597392a7dd4b498920920ec056ac0, type: 3}
+  - customBushMaterial: {fileID: -876546973899608171, guid: 157c299cd983cd54a954d780f73d1ac6, type: 3}
+  - buzzSound: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
