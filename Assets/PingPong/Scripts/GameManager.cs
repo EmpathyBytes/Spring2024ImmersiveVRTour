@@ -1,15 +1,19 @@
 using UnityEngine;
 using Oculus.Interaction;
 
-public class GameActivationManager : MonoBehaviour
+public class GameManager : MonoBehaviour
 {
-    [Header("References")]
     public GameObject playerBox;                 
     public Grabbable paddleGrabbable;           
     public ActiveStateSelector thumbsUpLeft;    
-    public ActiveStateSelector thumbsDownLeft;   
+    public ActiveStateSelector thumbsDownLeft;
+    public Transform ballServePoint;           
+    public BallScoringManager scoringManager;  
+    public GameObject ballPrefab;              
+    public Rigidbody ballRb;
 
     private bool gameStarted = false;
+    public static bool GameIsActive = false;
 
     private void OnEnable()
     {
@@ -56,16 +60,54 @@ public class GameActivationManager : MonoBehaviour
     private void LockPlayerInBox()
     {
         gameStarted = true;
+        GameIsActive = true;
         if (playerBox != null)
-            playerBox.SetActive(true);  
-        Debug.Log("Game started — player locked in box.");
+            playerBox.SetActive(true);
+
+        StartServe();
     }
 
     private void UnlockPlayer()
     {
         gameStarted = false;
+        GameIsActive = false;
         if (playerBox != null)
             playerBox.SetActive(false);
-        Debug.Log("Game ended — player unlocked.");
+
+        ResetBall();
+    }
+
+    private void StartServe()
+    {
+        if (!ballServePoint) return;
+
+        if (ballRb != null)
+        {
+            ballRb.velocity = Vector3.zero;
+            ballRb.angularVelocity = Vector3.zero;
+            ballRb.isKinematic = true;
+            ballRb.transform.position = ballServePoint.position;
+        }
+        else if (ballPrefab != null)
+        {
+            GameObject newBall = Instantiate(ballPrefab, ballServePoint.position, Quaternion.identity);
+            ballRb = newBall.GetComponent<Rigidbody>();
+        }
+
+        if (scoringManager != null)
+        {
+            scoringManager.BeginNewServe("Player");
+        }
+    }
+
+    private void ResetBall()
+    {
+        if (ballRb != null)
+        {
+            ballRb.velocity = Vector3.zero;
+            ballRb.angularVelocity = Vector3.zero;
+            ballRb.isKinematic = true;
+            ballRb.transform.position = ballServePoint.position;
+        }
     }
 }
