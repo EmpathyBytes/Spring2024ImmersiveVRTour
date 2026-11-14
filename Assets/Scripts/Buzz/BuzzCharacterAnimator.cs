@@ -26,6 +26,7 @@ namespace EmpathyBytes.Buzz
         private Transform head, antA, antB, wingA, wingB, shoulderA, elbowA, shoulderB, elbowB;
         private Transform hipA, hipB, kneeA, kneeB, tail, eyeA, eyeB, chest;
         private Vector3 basePos;
+        private bool hasAsked;
         private float nextBlink, blinkT = -1f, headYaw;
         private float sA, sB, sWA, sWB;
         private bool ready;
@@ -127,11 +128,15 @@ namespace EmpathyBytes.Buzz
 
             // Hook into the guide so he waves on greeting and gestures while answering.
             motion = FindObjectOfType<BuzzMotion>();
-            if (motion != null) motion.OnGreet.AddListener(() => WaveFor(4f));
+            if (motion != null) motion.OnGreet.AddListener(() => { hasAsked = false; WaveFor(120f); });
             var guide = FindObjectOfType<BuzzGuide>();
-            if (guide != null) guide.OnReply.AddListener(text => TalkFor(Mathf.Clamp((text?.Length ?? 0) / 14f, 2f, 12f)));
+            if (guide != null)
+            {
+                guide.OnAsk.AddListener(() => { hasAsked = true; waveUntil = 0f; talkUntil = 0f; });   // stop waving once a question is asked
+                guide.OnReply.AddListener(text => TalkFor(Mathf.Clamp((text?.Length ?? 0) / 15f, 3f, 14f)));
+            }
 
-            WaveFor(startWaveSeconds);
+            WaveFor(120f); // waves until the first question
             nextIdleWave = Time.time + idleWaveEvery;
             ready = true;
         }
@@ -141,7 +146,7 @@ namespace EmpathyBytes.Buzz
             if (!ready) return;
             float t = Time.time, dt = Time.deltaTime;
 
-            if (t > nextIdleWave) { WaveFor(3f); nextIdleWave = t + idleWaveEvery; }
+            if (!hasAsked && t > nextIdleWave) { WaveFor(3f); nextIdleWave = t + idleWaveEvery; }
             bool walking = motion != null && motion.IsWalking;
             wave = Mathf.MoveTowards(wave, (t < waveUntil && !walking) ? 1f : 0f, dt * 3f);
             walk = Mathf.MoveTowards(walk, walking ? 1f : 0f, dt * 5f);
@@ -193,13 +198,15 @@ namespace EmpathyBytes.Buzz
             // forearm folds up from the elbow and the hand waves side to side.
             float rest = -8f; // arms hang slightly away from the body
             float lift = Mathf.Lerp(rest, waveShoulder, wave);
-            shoulderA.localRotation = Quaternion.Euler(38f * wave - 26f * swing, 0f, sA * (lift + 3f * wave * Mathf.Sin(t * 4f)));
-            elbowA.localRotation = Quaternion.Euler(0f, 0f, sA * wave * (waveElbow + 22f * Mathf.Sin(t * 8f)));
+            float talkA = talk * (34f + 16f * Mathf.Sin(t * 3.3f));
+            float fwdA = talk * (22f + 12f * Mathf.Sin(t * 2.7f + 0.8f));
+            shoulderA.localRotation = Quaternion.Euler(38f * wave + fwdA - 26f * swing, 0f, sA * (lift + talkA + 3f * wave * Mathf.Sin(t * 4f)));
+            elbowA.localRotation = Quaternion.Euler(0f, 0f, sA * (wave * (waveElbow + 22f * Mathf.Sin(t * 8f)) + talk * (38f + 26f * Mathf.Sin(t * 4.1f + 0.7f))));
 
             // Arm B: swings when walking, gestures while talking, otherwise rests with a slight sway.
             float still = 1f - wave; // other arm stays put while one waves
             float gesture = still * talk * (32f + 14f * Mathf.Sin(t * 4f));
-            shoulderB.localRotation = Quaternion.Euler(26f * swing, 0f, sB * (rest + still * 3f * Mathf.Sin(t * 2f) + gesture));
+            shoulderB.localRotation = Quaternion.Euler(26f * swing + still * talk * (22f + 12f * Mathf.Sin(t * 3.1f)), 0f, sB * (rest + still * 3f * Mathf.Sin(t * 2f) + gesture));
             elbowB.localRotation = Quaternion.Euler(0f, 0f, sB * still * talk * (35f + 18f * Mathf.Sin(t * 4f + 1f)));
 
             // Legs: alternate hip swing, knees bend as the leg comes forward.

@@ -486,7 +486,7 @@ MonoBehaviour:
   bubbleOffset: {x: 0, y: 2.2, z: 0}
   characterSize: 0.03
   wrapColumns: 34
-  askOnStart: 1
+  askOnStart: 0
   demoQuestion: Who was this football presented to?
 --- !u!114 &203
 MonoBehaviour:
