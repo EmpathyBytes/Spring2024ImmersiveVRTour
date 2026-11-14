@@ -1,25 +1,33 @@
+using System.Collections;
 using UnityEngine;
 
 namespace EmpathyBytes.Buzz
 {
     /// <summary>
-    /// Summon button for Buzz. Call Toggle() / Summon() / Dismiss() from any button
-    /// (for example the hand-menu button's UnityEvent). In the Unity editor, press B to toggle.
-    /// Buzz appears in front of the visitor, wherever they are in the tour.
+    /// Summon / dismiss logic for Buzz. Summon() puts him a few metres in front of the visitor, he walks up,
+    /// waves and says a greeting. In the Unity editor, press B to toggle (sandbox scene only).
+    /// In the tour scenes BuzzTourController drives this from the in-world "Ask Buzz" button.
     /// </summary>
     [RequireComponent(typeof(BuzzMotion))]
     public class BuzzSummon : MonoBehaviour
     {
-        [SerializeField] private float distanceInFront = 1.5f;
+        [SerializeField] private float spawnDistance = 4.5f;
         [SerializeField] private bool startHidden = true;
+        [SerializeField] private string greeting = "Hi, I'm Buzz! Poke a question below, or ask me anything about this tour.";
 
         private BuzzMotion motion;
+        private BuzzGuide guide;
         private bool shown;
 
-        private void Start()
+        public bool IsShown => shown;
+
+        private IEnumerator Start()
         {
             motion = GetComponent<BuzzMotion>();
-            if (startHidden) SetShown(false);
+            guide = GetComponent<BuzzGuide>();
+            motion.OnGreet.AddListener(() => { if (shown && guide != null && !string.IsNullOrEmpty(greeting)) guide.ShowText(greeting); });
+            yield return null;   // let BuzzMotion find the body first
+            if (startHidden && !shown) SetShown(false);
         }
 
         private void Update()
@@ -34,10 +42,16 @@ namespace EmpathyBytes.Buzz
         public void Summon()
         {
             var cam = Camera.main;
-            if (cam == null || motion == null) return;
+            if (cam == null) cam = FindObjectOfType<Camera>();
+            if (cam == null) return;
+            if (motion == null) motion = GetComponent<BuzzMotion>();
             Vector3 fwd = Vector3.ProjectOnPlane(cam.transform.forward, Vector3.up).normalized;
             if (fwd.sqrMagnitude < 0.001f) fwd = Vector3.forward;
-            motion.SnapTo(cam.transform.position + fwd * distanceInFront);
+
+            // The tour rigs stand on the floor, so the rig's height is the floor height.
+            var rig = GameObject.Find("OVRCameraRig");
+            motion.FloorY = rig != null ? rig.transform.position.y : 0f;
+            motion.SnapTo(cam.transform.position + fwd * spawnDistance);
             SetShown(true);
         }
 
@@ -46,9 +60,13 @@ namespace EmpathyBytes.Buzz
         private void SetShown(bool value)
         {
             shown = value;
-            if (motion != null && motion.Body != null) motion.Body.gameObject.SetActive(value);
-            // The speech bubble is a child of this object; show it only while Buzz is out.
-            foreach (Transform child in transform) child.gameObject.SetActive(value);
+            if (motion == null) motion = GetComponent<BuzzMotion>();
+            if (motion != null)
+            {
+                motion.enabled = value;                       // no walking or greeting while he is away
+                if (motion.Body != null) motion.Body.gameObject.SetActive(value);
+            }
+            if (!value && guide != null) guide.HideBubble();
         }
     }
 }

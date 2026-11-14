@@ -44,6 +44,7 @@ namespace EmpathyBytes.Buzz
         /// <summary>The most recent answer, so a Repeat button can show or speak it again.</summary>
         public string LastReply { get; private set; } = "";
 
+        private string sceneContext = "";
         private TextMesh bubble;
         private Transform bubbleRoot, panelT, outlineT, tailT, tailOutlineT;
         private MeshRenderer bubbleTextRenderer;
@@ -201,7 +202,7 @@ namespace EmpathyBytes.Buzz
             {
                 model = model,
                 max_tokens = Mathf.Max(maxTokens, 2000), // room for the model's thinking plus a short answer
-                system = SystemPrompt + knowledge,
+                system = SystemPrompt + knowledge + (string.IsNullOrEmpty(sceneContext) ? "" : "\n\nCURRENT LOCATION: " + sceneContext),
                 messages = new[] { new Msg { role = "user", content = question } },
                 tools = new[] { new Tool { type = "web_search_20250305", name = "web_search", max_uses = 3 } }
             };
@@ -255,6 +256,14 @@ namespace EmpathyBytes.Buzz
             Debug.Log("Buzz says: " + text);
             OnReply.Invoke(text);
         }
+
+        /// <summary>Tells Buzz where the visitor currently is in the tour, so answers can refer to it.</summary>
+        public void SetContext(string context) { sceneContext = context ?? ""; }
+
+        /// <summary>Shows text in the bubble without asking Claude and without the answering animation (greetings).</summary>
+        public void ShowText(string text) { LastReply = text; Say(text); }
+
+        public void HideBubble() { if (bubbleRoot != null) bubbleRoot.gameObject.SetActive(false); layoutDirty = false; }
 
         /// <summary>Shows the last answer again (Repeat button).</summary>
         public void RepeatLast() { if (!string.IsNullOrEmpty(LastReply)) Say(LastReply); }

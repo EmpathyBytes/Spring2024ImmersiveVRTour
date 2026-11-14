@@ -44,11 +44,14 @@ namespace EmpathyBytes.Buzz
         /// <summary>Teleports Buzz's ground position (used by the summon button).</summary>
         public void SnapTo(Vector3 worldPosition)
         {
-            flatPos = new Vector3(worldPosition.x, 0f, worldPosition.z);
+            flatPos = new Vector3(worldPosition.x, FloorY, worldPosition.z);
             greeted = false;
         }
 
         public Transform Body => body;
+
+        /// <summary>World height of the floor Buzz stands on (the tour rigs stand on the floor, so this is the rig's height).</summary>
+        public float FloorY { get; set; }
 
         /// <summary>True while Buzz is walking toward the visitor (used to drive leg animation).</summary>
         public bool IsWalking { get; private set; }
@@ -83,7 +86,7 @@ namespace EmpathyBytes.Buzz
                         IsWalking = true;
                     }
 
-                    if (!greeted && dist < stopDistance + 1.5f)
+                    if (!greeted && dist < stopDistance + 0.4f)
                     {
                         greeted = true;
                         hopTime = Time.time;
@@ -100,8 +103,8 @@ namespace EmpathyBytes.Buzz
                 if (t >= 1f) hopTime = -1f; else hop = Mathf.Sin(t * Mathf.PI) * hopHeight;
             }
 
-            body.position = new Vector3(flatPos.x, height + hop, flatPos.z);
-            transform.position = new Vector3(flatPos.x, 0f, flatPos.z);   // speech bubble follows
+            body.position = new Vector3(flatPos.x, FloorY + height + hop, flatPos.z);
+            transform.position = new Vector3(flatPos.x, FloorY, flatPos.z);   // speech bubble follows
         }
     }
 }
