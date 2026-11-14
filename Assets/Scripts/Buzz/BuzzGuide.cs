@@ -9,8 +9,9 @@ namespace EmpathyBytes.Buzz
 {
     /// <summary>
     /// Prototype AI tour guide ("Buzz").
-    /// Answers visitor questions using ONLY the facts in the knowledge base (retrieval-grounding).
-    /// - With an API key: asks Claude, with the knowledge base as the only allowed source.
+    /// Answers visitor questions. Tour facts come from the knowledge base (info cards); general Georgia Tech
+    /// questions are answered too and tied back to the cards.
+    /// - With an API key: asks Claude, with the knowledge base as the trusted source for tour facts.
     /// - Without a key: offline demo mode picks the best-matching knowledge paragraph.
     /// Never commit an API key. A shipped headset build should call a small server that holds the key.
     /// Hook text-to-speech or a UI panel to OnReply.
@@ -37,13 +38,20 @@ namespace EmpathyBytes.Buzz
         [Serializable] public class ReplyEvent : UnityEvent<string> { }
         public ReplyEvent OnReply = new ReplyEvent();
 
+        /// <summary>The most recent answer, so a Repeat button can show or speak it again.</summary>
+        public string LastReply { get; private set; } = "";
+
         private TextMesh bubble;
 
         private const string SystemPrompt =
             "You are Buzz, the friendly Georgia Tech mascot giving a virtual reality tour. " +
-            "Answer in one to three short sentences. Use ONLY the facts in the KNOWLEDGE section. " +
-            "If the answer is not in the knowledge, say you are not sure and suggest asking a tour team member. " +
-            "Never invent dates, names or history.\n\nKNOWLEDGE:\n";
+            "Keep answers to one to four short, plain-language sentences. " +
+            "The KNOWLEDGE section holds the tour's info cards. Treat it as fully trusted: when a question is about an object, artist, place or event in it, answer from it. " +
+            "Visitors may also ask anything about Georgia Tech or its campus. Answer those helpfully from what you reliably know about Georgia Tech, " +
+            "and where it fits, connect the answer back to something in the KNOWLEDGE section (a nearby artifact, an artist, a place on the tour). " +
+            "Never invent dates, names, numbers or history. If you are not sure about a Georgia Tech fact, say so plainly and suggest asking a tour team member. " +
+            "If a question has nothing to do with Georgia Tech, answer briefly if harmless, then steer back to the tour. " +
+            "Be welcoming to everyone and never judge a question.\n\nKNOWLEDGE:\n";
 
         [Serializable] private class Msg { public string role; public string content; }
         [Serializable] private class Req { public string model; public int max_tokens; public string system; public Msg[] messages; }
@@ -138,10 +146,14 @@ namespace EmpathyBytes.Buzz
 
         private void Reply(string text)
         {
+            LastReply = text;
             Say(text);
             Debug.Log("Buzz says: " + text);
             OnReply.Invoke(text);
         }
+
+        /// <summary>Shows the last answer again (Repeat button).</summary>
+        public void RepeatLast() { if (!string.IsNullOrEmpty(LastReply)) Say(LastReply); }
 
         private void Say(string text)
         {
