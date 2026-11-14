@@ -14,7 +14,8 @@ namespace EmpathyBytes.Buzz
     /// </summary>
     public class BuzzCharacterAnimator : MonoBehaviour
     {
-        [SerializeField] private float waveAngle = 125f;
+        [SerializeField] private float waveShoulder = 70f;   // upper arm out to the side, elbow leads
+        [SerializeField] private float waveElbow = 100f;     // forearm folds up from the elbow
         [SerializeField] private float wingAngle = 16f;
         [SerializeField] private float wingSpeed = 22f;
         [SerializeField] private float startWaveSeconds = 5f;
@@ -23,7 +24,9 @@ namespace EmpathyBytes.Buzz
 
         private readonly Dictionary<int, Transform> parts = new Dictionary<int, Transform>();
         private Transform head, antA, antB, wingA, wingB, shoulderA, elbowA, shoulderB, elbowB;
-        private Transform hipA, hipB, kneeA, kneeB;
+        private Transform hipA, hipB, kneeA, kneeB, tail, eyeA, eyeB, chest;
+        private Vector3 basePos;
+        private float nextBlink, blinkT = -1f, headYaw;
         private float sA, sB, sWA, sWB;
         private bool ready;
 
@@ -44,6 +47,7 @@ namespace EmpathyBytes.Buzz
             }
             if (!parts.ContainsKey(0) || !parts.ContainsKey(22) || !parts.ContainsKey(43)) return; // not this model
 
+            basePos = transform.localPosition;
             float cx = transform.position.x;
             Bounds Bnd(params int[] ids)
             {
@@ -113,6 +117,14 @@ namespace EmpathyBytes.Buzz
             hipB = Pivot("Hip pivot B", hpB, transform); Move(new[] { 52 }, hipB);
             kneeB = Pivot("Knee pivot B", kpB, hipB); Move(new[] { 53, 54, 55, 56, 57, 58, 59, 60, 61 }, kneeB);
 
+            var abd = Bnd(19); var cst = Bnd(17, 62, 63, 64, 65);
+            tail = Pivot("Tail pivot", Vector3.Lerp(abd.center, cst.center, 0.6f), transform); Move(new[] { 19 }, tail);
+            chest = Pivot("Chest pivot", cst.center, transform); Move(new[] { 17, 62, 63, 64, 65 }, chest);
+            var eAb = Bnd(1, 2); var eBb = Bnd(9, 10);
+            eyeA = Pivot("Eye pivot A", eAb.center, head); Move(new[] { 1, 2 }, eyeA);
+            eyeB = Pivot("Eye pivot B", eBb.center, head); Move(new[] { 9, 10 }, eyeB);
+            nextBlink = Time.time + 2f;
+
             // Hook into the guide so he waves on greeting and gestures while answering.
             motion = FindObjectOfType<BuzzMotion>();
             if (motion != null) motion.OnGreet.AddListener(() => WaveFor(4f));
@@ -137,24 +149,57 @@ namespace EmpathyBytes.Buzz
             if (walk > 0.01f) phase += dt * walkRate;
 
             float swing = Mathf.Sin(phase) * walk;
+            float act = Mathf.Max(walk, Mathf.Max(wave, talk));
 
-            transform.localRotation = Quaternion.Euler(0f, 0f, 1.5f * Mathf.Sin(t * 2f));
-            head.localRotation = Quaternion.Euler(talk * 5f * Mathf.Sin(t * 5f), 7f * Mathf.Sin(t * 1.5f), 3f * Mathf.Sin(t * 2f));
-            antA.localRotation = Quaternion.Euler(0f, 0f, 5f * Mathf.Sin(t * 3f));
-            antB.localRotation = Quaternion.Euler(0f, 0f, -5f * Mathf.Sin(t * 3f));
-            float flap = wingAngle * Mathf.Sin(t * wingSpeed);
+            // Body: sway, bounce while walking, breathing.
+            float bob = 0.012f * Mathf.Abs(Mathf.Sin(phase)) * walk + 0.004f * Mathf.Sin(t * 2.2f);
+            transform.localPosition = basePos + new Vector3(0f, bob, 0f);
+            transform.localRotation = Quaternion.Euler(0f, 3f * wave * Mathf.Sin(t * 3f), 1.5f * Mathf.Sin(t * 2f) + 2.5f * wave * Mathf.Sin(t * 3f));
+            float breathe = 1f + 0.015f * Mathf.Sin(t * 2.4f);
+            chest.localScale = new Vector3(breathe, breathe, breathe);
+
+            // Head: looks toward the visitor, nods when talking, bobs when waving.
+            float targetYaw = 0f;
+            var cam = Camera.main;
+            if (cam != null)
+            {
+                Vector3 to = transform.InverseTransformPoint(cam.transform.position);
+                targetYaw = Mathf.Clamp(Mathf.Atan2(to.x, Mathf.Abs(to.z) + 0.001f) * Mathf.Rad2Deg * 0.5f, -35f, 35f);
+            }
+            headYaw = Mathf.LerpAngle(headYaw, targetYaw, dt * 3f);
+            head.localRotation = Quaternion.Euler(talk * 6f * Mathf.Sin(t * 5f) + wave * 4f * Mathf.Sin(t * 4f),
+                                                  headYaw + 5f * Mathf.Sin(t * 1.5f),
+                                                  3f * Mathf.Sin(t * 2f) + wave * 6f * Mathf.Sin(t * 4f));
+
+            // Blink.
+            if (blinkT < 0f && t > nextBlink) { blinkT = 0f; nextBlink = t + Random.Range(2.5f, 5f); }
+            float eyeY = 1f;
+            if (blinkT >= 0f) { blinkT += dt; eyeY = 1f - Mathf.Sin(Mathf.Clamp01(blinkT / 0.16f) * Mathf.PI) * 0.9f; if (blinkT > 0.16f) blinkT = -1f; }
+            eyeA.localScale = new Vector3(1f, eyeY, 1f);
+            eyeB.localScale = new Vector3(1f, eyeY, 1f);
+
+            // Antennae bounce more when active; tail wags.
+            float ant = 5f + 9f * act;
+            antA.localRotation = Quaternion.Euler(4f * act * Mathf.Sin(t * 6f), 0f, ant * Mathf.Sin(t * 3f));
+            antB.localRotation = Quaternion.Euler(4f * act * Mathf.Sin(t * 6f + 1f), 0f, -ant * Mathf.Sin(t * 3f + 0.5f));
+            tail.localRotation = Quaternion.Euler(4f * Mathf.Sin(t * 2.3f), (6f + 10f * act) * Mathf.Sin(t * (3f + 3f * act)), 0f);
+
+            // Wings: faster and wider when excited.
+            float flap = wingAngle * (1f + 0.6f * Mathf.Max(walk, wave)) * Mathf.Sin(t * wingSpeed);
             wingA.localRotation = Quaternion.Euler(0f, sWA * flap, 0f);
             wingB.localRotation = Quaternion.Euler(0f, sWB * flap, 0f);
 
-            // Arm A: waves when greeting, swings when walking.
-            float raise = waveAngle * wave + 6f * wave * Mathf.Sin(t * 7f);
-            shoulderA.localRotation = Quaternion.Euler(-26f * swing, 0f, sA * raise);
-            elbowA.localRotation = Quaternion.Euler(0f, 0f, sA * wave * (28f + 18f * Mathf.Sin(t * 7f)));
+            // Arm A wave: the ELBOW leads. Upper arm lifts out to the side (never past the head),
+            // forearm folds up from the elbow and the hand waves side to side.
+            float rest = -8f; // arms hang slightly away from the body
+            float lift = Mathf.Lerp(rest, waveShoulder, wave);
+            shoulderA.localRotation = Quaternion.Euler(-14f * wave - 26f * swing, 0f, sA * (lift + 4f * wave * Mathf.Sin(t * 4f)));
+            elbowA.localRotation = Quaternion.Euler(0f, 0f, sA * wave * (waveElbow + 24f * Mathf.Sin(t * 8f)));
 
             // Arm B: swings when walking, gestures while talking, otherwise rests with a slight sway.
             float gesture = talk * (32f + 14f * Mathf.Sin(t * 4f));
-            shoulderB.localRotation = Quaternion.Euler(26f * swing, 0f, sB * (4f * Mathf.Sin(t * 2f) + gesture));
-            elbowB.localRotation = Quaternion.Euler(0f, 0f, sB * talk * (22f + 12f * Mathf.Sin(t * 4f + 1f)));
+            shoulderB.localRotation = Quaternion.Euler(26f * swing, 0f, sB * (rest + 3f * Mathf.Sin(t * 2f) + gesture));
+            elbowB.localRotation = Quaternion.Euler(0f, 0f, sB * talk * (35f + 18f * Mathf.Sin(t * 4f + 1f)));
 
             // Legs: alternate hip swing, knees bend as the leg comes forward.
             hipA.localRotation = Quaternion.Euler(30f * swing, 0f, 0f);

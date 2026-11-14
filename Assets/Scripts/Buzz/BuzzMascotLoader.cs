@@ -91,6 +91,61 @@ namespace EmpathyBytes.Buzz
                 go.transform.SetParent(parent, false);
                 go.AddComponent<MeshFilter>().sharedMesh = mesh;
                 go.AddComponent<MeshRenderer>().sharedMaterial = GetMat(mats, shader, part.mat);
+
+                if (part.name.StartsWith("Striped_abdomen"))
+                    AddTailStripes(go.transform, vs, GetMat(mats, shader, "gold"));
+            }
+        }
+
+        /// <summary>Adds yellow bands around the tail (abdomen) so it reads as striped.</summary>
+        private static void AddTailStripes(Transform tail, List<Vector3> vs, Material gold)
+        {
+            float minY = float.MaxValue, maxY = float.MinValue;
+            foreach (var v in vs) { if (v.y < minY) minY = v.y; if (v.y > maxY) maxY = v.y; }
+            float height = maxY - minY;
+            float[] centres = { 0.34f, 0.55f, 0.76f };
+            const int segs = 44, rings = 7;
+            float halfBand = height * 0.045f;
+            for (int k = 0; k < centres.Length; k++)
+            {
+                float y0 = minY + height * centres[k];
+                var verts = new List<Vector3>();
+                for (int r = 0; r < rings; r++)
+                {
+                    float y = y0 - halfBand + 2f * halfBand * r / (rings - 1);
+                    float tol = height * 0.02f;
+                    float x0 = float.MaxValue, x1 = float.MinValue, z0 = float.MaxValue, z1 = float.MinValue; int n = 0;
+                    foreach (var v in vs)
+                    {
+                        if (Mathf.Abs(v.y - y) > tol) continue;
+                        n++;
+                        if (v.x < x0) x0 = v.x; if (v.x > x1) x1 = v.x;
+                        if (v.z < z0) z0 = v.z; if (v.z > z1) z1 = v.z;
+                    }
+                    if (n < 6) { x0 = -0.1f; x1 = 0.1f; z0 = -0.1f; z1 = 0.1f; }
+                    float cx = (x0 + x1) * 0.5f, cz = (z0 + z1) * 0.5f;
+                    float rx = (x1 - x0) * 0.5f * 1.03f + 0.004f, rz = (z1 - z0) * 0.5f * 1.03f + 0.004f;
+                    for (int i = 0; i < segs; i++)
+                    {
+                        float a = i * 2f * Mathf.PI / segs;
+                        verts.Add(new Vector3(cx + rx * Mathf.Cos(a), y, cz + rz * Mathf.Sin(a)));
+                    }
+                }
+                var tris = new List<int>();
+                for (int r = 0; r < rings - 1; r++)
+                    for (int i = 0; i < segs; i++)
+                    {
+                        int a = r * segs + i, b = r * segs + (i + 1) % segs, c = (r + 1) * segs + i, d = (r + 1) * segs + (i + 1) % segs;
+                        tris.Add(a); tris.Add(b); tris.Add(c); tris.Add(b); tris.Add(d); tris.Add(c);   // outside
+                        tris.Add(a); tris.Add(c); tris.Add(b); tris.Add(b); tris.Add(c); tris.Add(d);   // inside (double-sided)
+                    }
+                var mesh = new Mesh { name = "Tail stripe " + k };
+                mesh.SetVertices(verts); mesh.SetTriangles(tris, 0);
+                mesh.RecalculateNormals(); mesh.RecalculateBounds();
+                var go = new GameObject("Tail_stripe_" + (char)('A' + k));
+                go.transform.SetParent(tail, false);
+                go.AddComponent<MeshFilter>().sharedMesh = mesh;
+                go.AddComponent<MeshRenderer>().sharedMaterial = gold;
             }
         }
 
