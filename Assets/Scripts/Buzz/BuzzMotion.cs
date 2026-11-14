@@ -50,8 +50,12 @@ namespace EmpathyBytes.Buzz
 
         public Transform Body => body;
 
+        /// <summary>True while Buzz is walking toward the visitor (used to drive leg animation).</summary>
+        public bool IsWalking { get; private set; }
+
         private void Update()
         {
+            IsWalking = false;
             if (body == null) return;
             if (visitor == null && Camera.main != null) visitor = Camera.main.transform;
 
@@ -74,7 +78,10 @@ namespace EmpathyBytes.Buzz
                     body.rotation = Quaternion.AngleAxis(step, Vector3.up) * body.rotation;
 
                     if (dist > stopDistance)
+                    {
                         flatPos += to.normalized * walkSpeed * Time.deltaTime;
+                        IsWalking = true;
+                    }
 
                     if (!greeted && dist < stopDistance + 1.5f)
                     {
