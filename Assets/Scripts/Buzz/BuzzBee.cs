@@ -15,6 +15,8 @@ namespace EmpathyBytes.Buzz
 
         [Tooltip("Optional: a character prefab (front along +Z). If set, it is used instead of the primitive bee.")]
         [SerializeField] private GameObject characterPrefab;
+        [Tooltip("Optional: an .obj file imported as a TextAsset. Built at runtime as separate animated parts (takes priority over characterPrefab).")]
+        [SerializeField] private TextAsset mascotObj;
         [SerializeField] private float characterScale = 0.5f;
         [Tooltip("BuzzMotion lifts the body to this height, so the model is lowered by the same amount to stand on the floor.")]
         [SerializeField] private float characterFootOffset = 1f;
@@ -36,6 +38,19 @@ namespace EmpathyBytes.Buzz
             m.SetParent(root, false);
             m.localRotation = Quaternion.Euler(90f, 0f, 0f);
 
+            if (mascotObj != null)
+            {
+                m.position = root.position + Vector3.down * characterFootOffset;
+                var mc = new GameObject("BuzzCharacter");
+                mc.transform.SetParent(m, false);
+                mc.transform.localPosition = Vector3.zero;
+                mc.transform.localRotation = Quaternion.identity;
+                mc.transform.localScale = Vector3.one * characterScale;
+                BuzzMascotLoader.Build(mascotObj.text, mc.transform);
+                mc.AddComponent<BuzzCharacterAnimator>().Build();
+                return;
+            }
+
             if (characterPrefab != null)
             {
                 m.position = root.position + Vector3.down * characterFootOffset;
@@ -45,6 +60,8 @@ namespace EmpathyBytes.Buzz
                 c.transform.localPosition = Vector3.zero;
                 c.transform.localRotation = Quaternion.identity;
                 c.transform.localScale = Vector3.one * characterScale;
+                ConvertToURP(c);
+                c.AddComponent<BuzzCharacterAnimator>().Build();
                 return;
             }
 
@@ -73,6 +90,35 @@ namespace EmpathyBytes.Buzz
             }
             wingL = Wing(m, "WingL", -1, wing);
             wingR = Wing(m, "WingR", 1, wing);
+        }
+
+        // Imported OBJ/FBX models bring Standard-shader materials, which render pink in URP.
+        // Swap any non-URP material for a URP Lit one with the same colour.
+        private static void ConvertToURP(GameObject go)
+        {
+            var urp = Shader.Find("Universal Render Pipeline/Lit");
+            if (urp == null) return;
+            var cache = new System.Collections.Generic.Dictionary<Material, Material>();
+            foreach (var r in go.GetComponentsInChildren<Renderer>())
+            {
+                var mats = r.sharedMaterials;
+                for (int i = 0; i < mats.Length; i++)
+                {
+                    var m = mats[i];
+                    if (m == null || m.shader == urp || m.shader.name.StartsWith("Universal")) continue;
+                    if (!cache.TryGetValue(m, out var n))
+                    {
+                        Color col = m.HasProperty("_Color") ? m.color : Color.white;
+                        n = new Material(urp) { name = m.name };
+                        n.color = col;
+                        n.SetColor("_BaseColor", col);
+                        n.SetFloat("_Smoothness", m.name.ToLower().StartsWith("eye") ? 0.8f : 0.3f);
+                        cache[m] = n;
+                    }
+                    mats[i] = n;
+                }
+                r.sharedMaterials = mats;
+            }
         }
 
         private Transform Wing(Transform parent, string name, int side, Color c)

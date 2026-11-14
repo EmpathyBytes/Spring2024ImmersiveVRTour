@@ -11,26 +11,29 @@ public static class BuzzBuilder {
         black = Mat("Ink", new Color(.025f,.019f,.024f)); gold = Mat("Gold",new Color(1f,.67f,.025f));
         white = Mat("White",new Color(.98f,.98f,.94f)); darkGold = Mat("Deep Gold",new Color(.89f,.43f,.015f));
         var root = new GameObject("Buzz");
-        var hips = Joint(root.transform,"Hips",new Vector3(0,1.23f,0));
+        var hips = Joint(root.transform,"Hips",new Vector3(0,1.73f,0));
         var body = Joint(hips,"Body",new Vector3(0,.23f,0));
-        Ball(body,"Abdomen",new Vector3(0,-.26f,0),new Vector3(1.02f,1.08f,.83f),black);
-        // Curved yellow bands follow the abdomen surface rather than floating above it.
-        Band(body,"Upper gold stripe",-.13f,.13f,.516f,.423f,.54f,gold);
-        Band(body,"Lower gold stripe",-.43f,.105f,.517f,.424f,.54f,gold);
-        Ball(body,"Thorax",new Vector3(0,.28f,0),new Vector3(1.04f,.85f,.84f),black);
-        Cone(body,"Stinger",new Vector3(0,-.73f,-.12f),new Vector3(.22f,.43f,.23f),gold,180);
-        var head=Joint(body,"Head",new Vector3(0,.72f,.02f));
-        Ball(head,"Head shell",new Vector3(0,.24f,0),new Vector3(1.19f,1.02f,1.04f),black);
-        Ball(head,"Golden face",new Vector3(0,.12f,.30f),new Vector3(1.24f,.73f,.88f),gold);
-        Ball(head,"Muzzle",new Vector3(0,.07f,.54f),new Vector3(1.04f,.52f,.62f),gold);
-        Ball(head,"Grin",new Vector3(0,-.065f,.748f),new Vector3(.72f,.225f,.15f),black);
-        for(int i=0;i<6;i++) { float x=(i-2.5f)*.104f; Ball(head,"Tooth "+i,new Vector3(x,-.045f+Mathf.Abs(x)*.12f,.812f-Mathf.Abs(x)*.11f),new Vector3(.098f,.101f,.065f),white); }
-        Ball(head,"Oversized nose",new Vector3(0,.32f,.69f),new Vector3(.73f,.57f,.57f),black);
-        Ball(head,"Nose highlight",new Vector3(-.17f,.49f,.904f),new Vector3(.15f,.09f,.035f),white);
+        // Costume-style torso and hanging striped abdomen behind the legs.
+        var tail=Joint(body,"Tail",new Vector3(0,-.20f,-.22f));
+        Ball(tail,"Tail core",new Vector3(0,-.42f,-.12f),new Vector3(.86f,1.35f,.78f),black);
+        TailBand(tail,"Tail gold upper",-.31f,.105f,gold);
+        TailBand(tail,"Tail gold lower",-.79f,.095f,gold);
+        Ball(tail,"Tail tip",new Vector3(0,-1.02f,-.12f),new Vector3(.24f,.22f,.25f),black);
+        Ball(body,"Black jersey",new Vector3(0,.20f,0),new Vector3(1.05f,1.01f,.78f),black);
+        // Front-facing interlocking GT lettering, built from persistent mesh strokes.
+        Logo(body,white,gold);
+        var head=Joint(body,"Head",new Vector3(0,.76f,.02f));
+        Ball(head,"Yellow head",new Vector3(0,.31f,0),new Vector3(1.05f,1.30f,.99f),gold);
+        Ball(head,"Tapered yellow face",new Vector3(0,.03f,.06f),new Vector3(.77f,.79f,.83f),gold);
+        for(int eye=-1;eye<=1;eye+=2){
+            var e=Ball(head,eye<0?"Left eye":"Right eye",new Vector3(eye*.275f,.49f,.405f),new Vector3(.31f,.43f,.19f),black);
+            e.localRotation=Quaternion.Euler(0,eye*21f,eye*12f);
+            Ball(head,eye<0?"Left eye glint":"Right eye glint",new Vector3(eye*.275f-.035f,.59f,.492f),new Vector3(.075f,.102f,.035f),white);
+        }
         for(int s=-1;s<=1;s+=2) {
             string side=s<0?"Left":"Right";
-            var ant=Joint(head,side+" Antenna",new Vector3(s*.23f,.62f,-.04f));
-            Tube(ant,"Antenna",new Vector3[]{Vector3.zero,new Vector3(s*.10f,.26f,-.03f),new Vector3(s*.24f,.49f,-.06f),new Vector3(s*.42f,.70f,-.09f)},.038f,black);
+            var ant=Joint(head,side+" Antenna",new Vector3(s*.29f,.76f,-.04f));
+            Tube(ant,"Antenna",new Vector3[]{Vector3.zero,new Vector3(s*.17f,.17f,-.03f),new Vector3(s*.32f,.16f,-.05f),new Vector3(s*.43f,.02f,-.06f),new Vector3(s*.46f,-.12f,-.06f)},.038f,black);
             var wing=Joint(body,side+" Wing",new Vector3(s*.30f,.33f,-.34f));
             var a=Ball(wing,"Upper wing outline",new Vector3(s*.49f,.14f,-.07f),new Vector3(1.00f,.36f,.10f),black); a.localRotation=Quaternion.Euler(0,0,s*27);
             var b=Ball(wing,"Upper wing white",new Vector3(s*.49f,.14f,-.125f),new Vector3(.91f,.28f,.065f),white); b.localRotation=a.localRotation;
@@ -39,6 +42,7 @@ public static class BuzzBuilder {
             a=Ball(wing,"Lower wing outline",new Vector3(s*.40f,-.13f,-.075f),new Vector3(.82f,.30f,.10f),black); a.localRotation=Quaternion.Euler(0,0,-s*13);
             b=Ball(wing,"Lower wing white",new Vector3(s*.40f,-.13f,-.13f),new Vector3(.73f,.23f,.065f),white); b.localRotation=a.localRotation;
             c=Ball(wing,"Lower wing front",new Vector3(s*.40f,-.13f,-.022f),new Vector3(.73f,.23f,.065f),white); c.localRotation=a.localRotation;
+            wing.localScale=Vector3.one*.65f;
             var arm=Joint(body,side+" Shoulder",new Vector3(s*.43f,.30f,0));
             arm.localRotation=Quaternion.Euler(0,0,s*22f);
             Limb(arm,"Upper arm",new Vector3(0,-.02f,0),new Vector3(0,-.40f,0),.15f,gold);
@@ -46,18 +50,18 @@ public static class BuzzBuilder {
             Limb(elbow,"Forearm",Vector3.zero,new Vector3(0,-.35f,.02f),.115f,gold);
             Ball(elbow,"White cuff",new Vector3(0,-.27f,.018f),new Vector3(.25f,.16f,.25f),white);
             var hand=Joint(elbow,side+" Hand",new Vector3(0,-.38f,.02f));
-            Ball(hand,"Palm",new Vector3(0,-.10f,0),new Vector3(.26f,.29f,.20f),gold);
-            for(int i=0;i<3;i++) Ball(hand,"Finger "+i,new Vector3((i-1)*.075f,-.22f,.005f),new Vector3(.09f,.20f,.12f),gold);
-            Ball(hand,"Thumb",new Vector3(-s*.13f,-.07f,.035f),new Vector3(.12f,.21f,.13f),gold).localRotation=Quaternion.Euler(0,0,-s*35);
+            Ball(hand,"Palm",new Vector3(0,-.10f,0),new Vector3(.26f,.29f,.20f),white);
+            for(int i=0;i<4;i++) Ball(hand,"Finger "+i,new Vector3((i-1.5f)*.062f,-.22f,.005f),new Vector3(.09f,.20f,.12f),white);
+            Ball(hand,"Thumb",new Vector3(-s*.13f,-.07f,.035f),new Vector3(.12f,.21f,.13f),white).localRotation=Quaternion.Euler(0,0,-s*35);
             var leg=Joint(hips,side+" Hip",new Vector3(s*.27f,-.37f,0));
             leg.localRotation=Quaternion.Euler(0,0,s*8);
-            Limb(leg,"Thigh",Vector3.zero,new Vector3(0,-.39f,0),.135f,black);
-            var knee=Joint(leg,side+" Knee",new Vector3(0,-.39f,0));
-            Limb(knee,"Shin",Vector3.zero,new Vector3(0,-.33f,0),.103f,black);
-            var foot=Joint(knee,side+" Foot",new Vector3(0,-.33f,0));
+            Limb(leg,"Thigh",Vector3.zero,new Vector3(0,-.62f,0),.135f,black);
+            var knee=Joint(leg,side+" Knee",new Vector3(0,-.62f,0));
+            Limb(knee,"Shin",Vector3.zero,new Vector3(0,-.58f,0),.103f,black);
+            var foot=Joint(knee,side+" Foot",new Vector3(0,-.58f,0));
             Ball(foot,"Shoe",new Vector3(0,-.07f,.15f),new Vector3(.33f,.25f,.55f),black);
             Ball(foot,"White sole",new Vector3(0,-.17f,.17f),new Vector3(.35f,.095f,.57f),white);
-            Ball(foot,"White toe",new Vector3(0,-.075f,.36f),new Vector3(.31f,.17f,.22f),white);
+            Ball(foot,"White toe",new Vector3(0,-.075f,.36f),new Vector3(.31f,.17f,.22f),black);
             for(int i=0;i<2;i++) Ball(foot,"Lace "+i,new Vector3(0,.025f,.10f+i*.09f),new Vector3(.20f,.036f,.042f),white);
         }
         root.AddComponent<BuzzCharacterMotion>();
@@ -65,6 +69,37 @@ public static class BuzzBuilder {
         PrefabUtility.SaveAsPrefabAssetAndConnect(root,path,InteractionMode.UserAction);
         Undo.RegisterCreatedObjectUndo(root,"Build Buzz"); Selection.activeGameObject=root;
         AssetDatabase.SaveAssets(); Debug.Log("Buzz prefab created at "+path+". Press Play to preview motion.");
+    }
+    static void Logo(Transform p, Material outline, Material fill){
+        // Stylized block GT, gold fill with white outline, conforming to jersey front.
+        Vector2[] g={new Vector2(.015f,.35f),new Vector2(-.16f,.35f),new Vector2(-.235f,.28f),new Vector2(-.235f,.13f),new Vector2(-.16f,.06f),new Vector2(.015f,.06f),new Vector2(.065f,.12f),new Vector2(.065f,.19f),new Vector2(-.045f,.19f)};
+        Vector2[] top={new Vector2(.015f,.22f),new Vector2(.255f,.22f)};
+        Vector2[] stem={new Vector2(.135f,.22f),new Vector2(.135f,-.055f)};
+        LogoStroke(p,"G outline",g,.091f,outline,.012f);
+        LogoStroke(p,"G gold",g,.056f,fill,.019f);
+        LogoStroke(p,"T outline top",top,.091f,outline,.026f);
+        LogoStroke(p,"T outline stem",stem,.091f,outline,.026f);
+        LogoStroke(p,"T gold top",top,.056f,fill,.033f);
+        LogoStroke(p,"T gold stem",stem,.056f,fill,.033f);
+    }
+    static float JerseyZ(float x,float y){return .39f*Mathf.Sqrt(Mathf.Max(.01f,1-x*x/(.525f*.525f)-(y-.20f)*(y-.20f)/(.505f*.505f)));}
+    static void LogoStroke(Transform p,string name,Vector2[] pts,float width,Material mat,float offset){
+        var v=new System.Collections.Generic.List<Vector3>(); var tr=new System.Collections.Generic.List<int>();
+        for(int i=1;i<pts.Length;i++){
+            Vector2 a=pts[i-1],b=pts[i];Vector2 d=(b-a).normalized;Vector2 n=new Vector2(-d.y,d.x)*width*.5f;
+            a-=d*width*.5f;b+=d*width*.5f;
+            int start=v.Count; int steps=12;
+            for(int j=0;j<=steps;j++){Vector2 c=Vector2.Lerp(a,b,j/(float)steps);foreach(Vector2 q in new Vector2[]{c-n,c+n})v.Add(new Vector3(q.x,q.y,JerseyZ(q.x,q.y)+offset));
+                if(j<steps){int k=start+j*2;tr.Add(k);tr.Add(k+2);tr.Add(k+1);tr.Add(k+1);tr.Add(k+2);tr.Add(k+3);}}
+        }
+        var mesh=new Mesh();mesh.SetVertices(v);mesh.SetTriangles(tr,0);mesh.RecalculateNormals();MeshObject(p,name,mesh,mat);
+    }
+    static void TailBand(Transform p,string name,float y,float half,Material mat){
+        int n=96, rows=16;var v=new Vector3[(n+1)*(rows+1)];var tr=new int[n*rows*6];
+        for(int j=0;j<=rows;j++){float yy=y-half+2*half*j/rows;float f=Mathf.Sqrt(Mathf.Max(.001f,1-Mathf.Pow((yy+.42f)/.675f,2)));
+            for(int i=0;i<=n;i++){float a=i*2*Mathf.PI/n;v[j*(n+1)+i]=new Vector3(.442f*f*Mathf.Cos(a),yy,-.12f+.402f*f*Mathf.Sin(a));}}
+        int t=0;for(int j=0;j<rows;j++)for(int i=0;i<n;i++){int k=j*(n+1)+i;tr[t++]=k;tr[t++]=k+n+1;tr[t++]=k+1;tr[t++]=k+1;tr[t++]=k+n+1;tr[t++]=k+n+2;}
+        var mesh=new Mesh();mesh.vertices=v;mesh.triangles=tr;mesh.RecalculateNormals();MeshObject(p,name,mesh,mat);
     }
     static Material Mat(string name, Color c) {
         string p=Folder+"/"+name+".mat"; var m=AssetDatabase.LoadAssetAtPath<Material>(p);
