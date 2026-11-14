@@ -14,8 +14,8 @@ namespace EmpathyBytes.Buzz
     /// </summary>
     public class BuzzCharacterAnimator : MonoBehaviour
     {
-        [SerializeField] private float waveShoulder = 70f;   // upper arm out to the side, elbow leads
-        [SerializeField] private float waveElbow = 100f;     // forearm folds up from the elbow
+        [SerializeField] private float waveShoulder = 85f;   // upper arm out to the side, elbow leads
+        [SerializeField] private float waveElbow = 55f;     // forearm folds up from the elbow
         [SerializeField] private float wingAngle = 16f;
         [SerializeField] private float wingSpeed = 22f;
         [SerializeField] private float startWaveSeconds = 5f;
@@ -193,13 +193,14 @@ namespace EmpathyBytes.Buzz
             // forearm folds up from the elbow and the hand waves side to side.
             float rest = -8f; // arms hang slightly away from the body
             float lift = Mathf.Lerp(rest, waveShoulder, wave);
-            shoulderA.localRotation = Quaternion.Euler(-14f * wave - 26f * swing, 0f, sA * (lift + 4f * wave * Mathf.Sin(t * 4f)));
-            elbowA.localRotation = Quaternion.Euler(0f, 0f, sA * wave * (waveElbow + 24f * Mathf.Sin(t * 8f)));
+            shoulderA.localRotation = Quaternion.Euler(38f * wave - 26f * swing, 0f, sA * (lift + 3f * wave * Mathf.Sin(t * 4f)));
+            elbowA.localRotation = Quaternion.Euler(0f, 0f, sA * wave * (waveElbow + 22f * Mathf.Sin(t * 8f)));
 
             // Arm B: swings when walking, gestures while talking, otherwise rests with a slight sway.
-            float gesture = talk * (32f + 14f * Mathf.Sin(t * 4f));
-            shoulderB.localRotation = Quaternion.Euler(26f * swing, 0f, sB * (rest + 3f * Mathf.Sin(t * 2f) + gesture));
-            elbowB.localRotation = Quaternion.Euler(0f, 0f, sB * talk * (35f + 18f * Mathf.Sin(t * 4f + 1f)));
+            float still = 1f - wave; // other arm stays put while one waves
+            float gesture = still * talk * (32f + 14f * Mathf.Sin(t * 4f));
+            shoulderB.localRotation = Quaternion.Euler(26f * swing, 0f, sB * (rest + still * 3f * Mathf.Sin(t * 2f) + gesture));
+            elbowB.localRotation = Quaternion.Euler(0f, 0f, sB * still * talk * (35f + 18f * Mathf.Sin(t * 4f + 1f)));
 
             // Legs: alternate hip swing, knees bend as the leg comes forward.
             hipA.localRotation = Quaternion.Euler(30f * swing, 0f, 0f);

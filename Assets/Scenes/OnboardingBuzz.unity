@@ -540,7 +540,7 @@ MonoBehaviour:
   flapAngle: 28
   characterPrefab: {fileID: 0}
   mascotObj: {fileID: 4900000, guid: 4a5d24aaf5bc74c2e9601bbe7d538188, type: 3}
-  characterScale: 0.45
+  characterScale: 0.6
   characterFootOffset: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
